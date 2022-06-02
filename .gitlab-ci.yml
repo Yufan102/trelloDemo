@@ -1,8 +1,4 @@
-stages:          # List of stages for jobs, and their order of execution
-  - test
-
-Test-pipeline:    
-  stage: test  
+build1:
+  stage: build
   script:
-    - echo "Deploying application..."
-    - echo "Application successfully deployed."
+    - echo "Test build"
