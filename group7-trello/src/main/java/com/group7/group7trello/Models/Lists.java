@@ -3,7 +3,7 @@ import javax.persistence.*;
 import java.util.*;
 
 @Entity
-public class Board {
+public class Lists {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
@@ -11,10 +11,14 @@ public class Board {
     @Column(length=50, nullable=false, unique=false)
     private String name;
 
-    @ManyToOne
-    @JoinColumn(name = "workspace_id")
-    private Workspace workspace;
+    @Column(length=50, nullable=true, unique=false)
+    private int list_ordering;
 
-    @OneToMany(mappedBy = "board")
-    private Set<Lists> Lists = new HashSet<>();
+    @ManyToOne
+    @JoinColumn(name = "board_id")
+    private Board board;
+
+    @OneToMany(mappedBy = "list_id")
+    private Set<Ticket> tickets = new HashSet<>();
 }
+

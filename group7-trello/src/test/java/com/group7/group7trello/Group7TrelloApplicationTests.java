@@ -17,7 +17,7 @@ class Group7TrelloApplicationTests {
     @Autowired
     DataSource csci3130_group07;
 
-    @Test
+    @Testcis
     void contextLoads() {
         // Add tests for controllers and services here when they are made?
     }

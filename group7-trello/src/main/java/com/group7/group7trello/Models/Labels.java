@@ -3,18 +3,17 @@ import javax.persistence.*;
 import java.util.*;
 
 @Entity
-public class Board {
+public class Labels {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
 
     @Column(length=50, nullable=false, unique=false)
-    private String name;
+    private String label;
 
-    @ManyToOne
-    @JoinColumn(name = "workspace_id")
-    private Workspace workspace;
+    @Column(length=50, nullable=false, unique=false)
+    private String colour;
 
-    @OneToMany(mappedBy = "board")
-    private Set<Lists> Lists = new HashSet<>();
+    @OneToMany(mappedBy = "label")
+    private Set<TicketLabels> ticketLabels = new HashSet<>();
 }

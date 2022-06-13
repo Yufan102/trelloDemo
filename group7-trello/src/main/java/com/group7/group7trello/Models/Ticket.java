@@ -13,12 +13,12 @@ public class Ticket {
     private User assign_user_id;
 
     @ManyToOne
-    @JoinColumn(name = "board_id")
-    private User board_id;
+    @JoinColumn(name = "list_id")
+    private Lists list_id;
 
     @ManyToOne
     @JoinColumn(name = "sprint_id")
-    private User sprint_id;
+    private Sprint sprint_id;
 
     @ManyToOne
     @JoinColumn(name = "report_to_id")
@@ -27,8 +27,8 @@ public class Ticket {
     @Column(length=50, nullable=false, unique=true)
     private String name;
 
-    @Column(length=50, nullable=false, unique=false)
-    private String label;
+    @OneToMany(mappedBy = "ticket")
+    private Set<TicketLabels> ticketLabels = new HashSet<>();
 
     @Column(length=50, nullable=true, unique=false)
     private int story_points;

@@ -1,5 +1,6 @@
 package com.group7.group7trello;
 
+import com.group7.group7trello.Models.User;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
