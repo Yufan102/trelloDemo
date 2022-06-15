@@ -36,8 +36,20 @@ public class UserServiceImpl implements UserService {
         currentUser.setPassword(new_password);
         return userRepository.save(currentUser);
     }
-    
+
+    @Override
+    public User getUserByID(long id){
+        return userRepository.findById(id).get();
+    }
+    @Override
     public void deleteUser(User user){
         userRepository.delete(user);
+    }
+
+    @Override
+    public User addSecurityQuestion(Long id,String question, String ans){
+        User currentUser = userRepository.findById(id).get();
+        //currentUser.setSecurity_question();
+        return userRepository.save(currentUser);
     }
 }

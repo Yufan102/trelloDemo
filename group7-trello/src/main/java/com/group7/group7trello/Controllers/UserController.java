@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/user")
 public class UserController {
 
     @Qualifier("userServiceImpl")
@@ -15,18 +15,35 @@ public class UserController {
     UserService service;
 
 
-    @GetMapping("/1")
+    //Working
+    @GetMapping("/test")
     public String testService() {
         return "Services is working";
     }
 
-    @GetMapping("/")
+    //TODO not working, need to be fixed
+    @GetMapping("/getID")
+    public User getUserByID(Long id){
+        return service.getUserByID(id);
+    }
+
+    //Working
+    @GetMapping("/getEmail")
     public User getUser(String email) {
         return service.getUser(email);
     }
-    @PostMapping(value = "/user")
+
+    //Working
+    @PostMapping(value = "/create")
     public User createUser(@RequestBody User user){
         return service.createUser(user);
+    }
+
+    //Working
+    //To delete a user, you have to provide the not null value in DB
+    @DeleteMapping(value = "/delete")
+    public void deleteUser(@RequestBody User user){
+        service.deleteUser(user);
     }
 
 
