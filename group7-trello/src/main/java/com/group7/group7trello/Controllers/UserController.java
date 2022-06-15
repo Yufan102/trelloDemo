@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Optional;
+
 @RestController
 @RequestMapping("/api/user")
 public class UserController {
@@ -21,9 +23,8 @@ public class UserController {
         return "Services is working";
     }
 
-    //TODO not working, need to be fixed
     @GetMapping("/getID")
-    public User getUserByID(Long id){
+    public Optional<User> getUserByID(Long id){
         return service.getUserByID(id);
     }
 
