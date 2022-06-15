@@ -3,26 +3,31 @@ package com.group7.group7trello.Controllers;
 import com.group7.group7trello.Models.User;
 import com.group7.group7trello.Services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/user")
+@RequestMapping("/api")
 public class UserController {
 
+    @Qualifier("userServiceImpl")
     @Autowired
-    private UserService service;
+    UserService service;
 
 
-    @GetMapping("/")
+    @GetMapping("/1")
     public String testService() {
         return "Services is working";
     }
 
-    @GetMapping("/getUser")
+    @GetMapping("/")
     public User getUser(String email) {
         return service.getUser(email);
     }
+    @PostMapping(value = "/user")
+    public User createUser(@RequestBody User user){
+        return service.createUser(user);
+    }
+
 
 }
