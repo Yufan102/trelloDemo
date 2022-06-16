@@ -2,7 +2,6 @@ package com.group7.group7trello.Services;
 
 import com.group7.group7trello.Models.User;
 import com.group7.group7trello.Repositories.UserRepository;
-import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,12 +25,30 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User createUSer(User u) {
-        return null;
+    public User createUser(User user) {
+        return userRepository.save(user);
+    }
+    
+    @Override
+    public User resetUserPassword(Long id, String new_password) {
+        User currentUser = userRepository.findById(id).get();
+        currentUser.setPassword(new_password);
+        return userRepository.save(currentUser);
     }
 
     @Override
-    public User resetUserPassword(Long id) {
-        return null;
+    public Optional<User> getUserByID(long id){
+        return userRepository.findById(id);
+    }
+    @Override
+    public void deleteUser(User user){
+        userRepository.delete(user);
+    }
+
+    @Override
+    public User addSecurityQuestion(Long id,String question, String ans){
+        User currentUser = userRepository.findById(id).get();
+        //currentUser.setSecurity_question();
+        return userRepository.save(currentUser);
     }
 }
