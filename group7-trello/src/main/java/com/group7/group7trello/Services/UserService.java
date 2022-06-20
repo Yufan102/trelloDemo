@@ -7,7 +7,7 @@ import java.util.Optional;
 
 @Service
 public interface UserService {
-    public User getUser(String email);
+    public User getUserByEmail(String email);
 
     public Optional<User> getUserByID(long id);
     public User createUser(User u);
