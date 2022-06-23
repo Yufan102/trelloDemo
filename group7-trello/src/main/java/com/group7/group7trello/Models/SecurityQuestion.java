@@ -17,4 +17,36 @@ public class SecurityQuestion {
 
     @OneToMany(mappedBy = "security_question")
     private Set<User> Users = new HashSet<>();
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Questions getQuestion() {
+        return question;
+    }
+
+    public void setQuestion(Questions question) {
+        this.question = question;
+    }
+
+    public String getAnswer() {
+        return answer;
+    }
+
+    public void setAnswer(String answer) {
+        this.answer = answer;
+    }
+
+    public Set<User> getUsers() {
+        return Users;
+    }
+
+    public void setUsers(Set<User> users) {
+        Users = users;
+    }
 }

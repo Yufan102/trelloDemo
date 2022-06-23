@@ -1,10 +1,13 @@
 package com.group7.group7trello.Controllers;
 
 import com.group7.group7trello.Models.Authorization;
+import com.group7.group7trello.Models.Questions;
+import com.group7.group7trello.Models.SecurityQuestion;
 import com.group7.group7trello.Models.User;
+import com.group7.group7trello.Repositories.QuestionsRepository;
+import com.group7.group7trello.Repositories.SecurityQuestionRepository;
 import com.group7.group7trello.Security.TokenService;
-import com.group7.group7trello.Services.AuthorizationService;
-import com.group7.group7trello.Services.UserService;
+import com.group7.group7trello.Services.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.*;
@@ -26,6 +29,12 @@ public class UserController {
 
     @Autowired
     AuthorizationService authorizationService;
+
+    @Autowired
+    QuestionsService questionsService;
+
+    @Autowired
+    SecurityQuestionService securityQuestionService;
 
     //Working
     @GetMapping("/test")
