@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Map;
 import java.util.Optional;
 
 @RestController
@@ -29,12 +30,6 @@ public class UserController {
 
     @Autowired
     AuthorizationService authorizationService;
-
-    @Autowired
-    QuestionsService questionsService;
-
-    @Autowired
-    SecurityQuestionService securityQuestionService;
 
     //Working
     @GetMapping("/test")
@@ -66,8 +61,12 @@ public class UserController {
         userService.deleteUser(user);
     }
 
-    @PostMapping(value = "/login/{email}/{password}", consumes = "application/json")
-    public String login(@PathVariable("email") String email, @PathVariable("password") String password){
+    @PostMapping(value = "/login", consumes = "application/json")
+    public String login(@RequestBody Map<String, String> login){
+        String email = login.get("email");
+        String password = login.get("password");
+
+
         User u = userService.getUserByEmail(email);
         if(!u.getPassword().equals(password)) {
             return null;
