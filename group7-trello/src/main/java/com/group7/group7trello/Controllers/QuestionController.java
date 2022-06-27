@@ -28,8 +28,8 @@ public class QuestionController {
     UserService userService;
 
 
-    @PostMapping(value = "/forget/{ans}")
-    public Boolean securityQuestionCorrect(String email, @PathVariable String ans){
+    @PostMapping(value = "/forget/{email}/{ans}")
+    public Boolean securityQuestionCorrect(@PathVariable("ans") String ans, @PathVariable("email") String email){
         User user = userService.getUserByEmail(email);
 
         SecurityQuestion securityQuestion = user.getSecurity_question();
@@ -37,7 +37,7 @@ public class QuestionController {
     }
 
     @PostMapping(value = "/create/{questionID}/{ans}")
-    public Long setSecurityQuestion(@PathVariable Long questionID, @PathVariable String ans){
+    public Long setSecurityQuestion(@PathVariable("questionID") Long questionID, @PathVariable("ans") String ans){
         SecurityQuestion securityQuestion = new SecurityQuestion();
         Questions questions = questionsService.getByID(questionID);
         securityQuestion.setAnswer(ans);

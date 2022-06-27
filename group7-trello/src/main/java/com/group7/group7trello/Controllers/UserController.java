@@ -42,14 +42,14 @@ public class UserController {
         return "Services is working";
     }
 
-    @GetMapping("/getID")
-    public Optional<User> getUserByID(Long id){
+    @GetMapping(value="/getUserById/{id}",produces="application/json")
+    public Optional<User> getUserByID(@PathVariable("id") Long id){
         return userService.getUserByID(id);
     }
 
     //Working
-    @GetMapping("/getEmail")
-    public User getUser(String email) {
+    @GetMapping("/{email}")
+    public User getUser(@PathVariable String email) {
         return userService.getUserByEmail(email);
     }
 
@@ -66,8 +66,8 @@ public class UserController {
         userService.deleteUser(user);
     }
 
-    @PostMapping("/login")
-    public String login(String email, String password){
+    @PostMapping(value = "/login/{email}/{password}", consumes = "application/json")
+    public String login(@PathVariable("email") String email, @PathVariable("password") String password){
         User u = userService.getUserByEmail(email);
         if(!u.getPassword().equals(password)) {
             return null;
