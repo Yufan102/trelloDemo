@@ -4,6 +4,7 @@ function RegisterForm(props){
     const fullNameRef = useRef();
     const emailRef = useRef();
     const passwordRef = useRef();
+    const securityQRef = useRef();
 
     function submitHandler(event){
         event.preventDefault();
@@ -12,18 +13,36 @@ function RegisterForm(props){
         const email = emailRef.current.value;
         const password = passwordRef.current.value;
         const user = {fullName, email, password};
+        const securityQ = securityQRef.current.value;
 
         //Send the values to server
         props.registerUser(user);
     }
 
     return (
-        <form onSubmit={submitHandler}>
-            <input type="text" required placeholder="Full name" ref={fullNameRef}/>
-            <input type="email" required placeholder="Email" ref={emailRef}/>
-            <input type="password" required placeholder="Password" ref={passwordRef}/>
-            <button>Submit</button>
-        </form>
+        <div id="signup">
+            <form onSubmit={submitHandler}>
+                <label id="name">Full Name</label>
+                <input type="text" required placeholder="Enter full name" ref={fullNameRef}/>
+
+                <label id="email">Email</label>
+                <input type="email" required placeholder="Enter email" ref={emailRef}/>
+
+                <label id="password">Password</label>
+                <input type="password" required placeholder="Enter password" ref={passwordRef}/>
+
+                <label id="securityQ">Security Question</label>
+                <select id="security" name="questions" size="5" multiple>
+                    <option value="mother">What is your mother's maiden name?</option>
+                    <option value="pet">What is the name of your first pet?</option>
+                    <option value="teacher">What is the name of your favorite high school teacher?</option>
+                    <option value="street">What was the name of your street growing up?</option>
+                    <option value="concert">What is the first concert you attended?</option>
+                </select>
+
+                <button type="submit">Submit</button>
+            </form>
+        </div>
     );
 }
 
