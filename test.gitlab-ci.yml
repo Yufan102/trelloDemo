@@ -5,4 +5,11 @@ build:
   script:
     - cd ./group7-trello
     - mvn compile
+
+Test:
+  stage: test
+  script: 
+    - cd ./group7-trello
+    - mvn test
+  
     
