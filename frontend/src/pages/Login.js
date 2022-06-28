@@ -5,7 +5,10 @@ function LoginPage() {
     const history = useHistory();
 
     function loginUserHandler(user) {
-        fetch('')
+        fetch('http://localhost:8080/api/user/login', {
+            method: 'POST',
+            body: JSON.stringify({ "email" : "test@test.com", "password": "test" })
+        })
         .then(() => {
             //perform any other operations you want here first then redirect to homepage
             //stuff like checking if it's a valid email or if the password matches the password criteria etc
