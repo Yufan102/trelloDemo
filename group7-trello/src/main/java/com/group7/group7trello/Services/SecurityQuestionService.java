@@ -7,6 +7,5 @@ import org.springframework.stereotype.Service;
 public interface SecurityQuestionService {
     public String getQuestionByEmail(String email);
     public String getAnsByEmail(String email);
-    public void addQuestion(String question,String Email);
     public SecurityQuestion createSecurityQuestion(SecurityQuestion securityQuestion);
 }

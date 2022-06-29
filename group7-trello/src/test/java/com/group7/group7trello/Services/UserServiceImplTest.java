@@ -38,6 +38,10 @@ class UserServiceImplTest {
 
     @Test
     void getUserByEmail() {
+        Optional<User> user = Optional.of(new User());
+        Mockito.when(userRepository.findByEmail(anyString())).thenReturn(user);
+
+        assertNotNull(userService.getUserByEmail(anyString()));
     }
 
     @Test

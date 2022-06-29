@@ -13,7 +13,7 @@ public class SecurityQuestionServiceImpl implements SecurityQuestionService {
 
     @Override
     public String getQuestionByEmail(String email) {
-        UserServiceImpl userService = new UserServiceImpl();
+        UserService userService = new UserServiceImpl();
         User user = userService.getUserByEmail(email);
 
         SecurityQuestion securityQuestion = user.getSecurity_question();
@@ -29,11 +29,6 @@ public class SecurityQuestionServiceImpl implements SecurityQuestionService {
         SecurityQuestion securityQuestion = user.getSecurity_question();
 
         return securityQuestion.getAnswer();
-    }
-
-    @Override
-    public void addQuestion(String question, String Email) {
-
     }
 
     @Override
