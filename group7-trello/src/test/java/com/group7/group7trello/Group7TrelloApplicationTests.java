@@ -1,5 +1,4 @@
 package com.group7.group7trello;
-
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -9,18 +8,10 @@ import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
-
-
 @SpringBootTest
 class Group7TrelloApplicationTests {
-
     @Autowired
     DataSource csci3130_group07;
-
-    @Test
-    void contextLoads() {
-        // Add tests for controllers and services here when they are made?
-    }
 
     @Test
     void dbConecction() {
@@ -31,11 +22,4 @@ class Group7TrelloApplicationTests {
         }
     }
 
-    void register() {
-
-    }
-
-    void login() {
-
-    }
 }
