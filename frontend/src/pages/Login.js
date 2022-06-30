@@ -4,10 +4,16 @@ import { useHistory } from "react-router-dom";
 function LoginPage() {
     const history = useHistory();
 
+    const url = process.env.REACT_APP_URL;
+
     function loginUserHandler(user) {
-        fetch('http://localhost:8080/api/user/login', {
+        fetch(url + '/user/login', {
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
             method: 'POST',
-            body: JSON.stringify({ "email" : "test@test.com", "password": "test" })
+            body: JSON.stringify(user)
         })
         .then(() => {
             //perform any other operations you want here first then redirect to homepage

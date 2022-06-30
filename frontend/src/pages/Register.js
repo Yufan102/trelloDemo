@@ -4,8 +4,14 @@ import { useHistory } from "react-router-dom";
 function RegisterPage() {
 const history = useHistory();
 
+const url = process.env.REACT_APP_URL;
+
     function registerUserHandler(user) {
-        fetch('', {
+        fetch(url + '/user/signup', {
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
             method: 'POST',
             body: JSON.stringify(user), //convert javascript object to JSON object
             headers: {'Content-Type': 'application/json'}
