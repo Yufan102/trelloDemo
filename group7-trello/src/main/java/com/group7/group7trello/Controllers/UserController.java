@@ -61,13 +61,13 @@ public class UserController {
     }
 
     @PostMapping(value = "/login", consumes = "application/json")
-    public String login(@RequestBody Map<String, String> login){
-        String email = login.get("email");
-        String password = login.get("password");
+    public String login(@RequestBody Map<String, String> loginInfo){
+        String email = loginInfo.get("email");
+        String password = loginInfo.get("password");
 
 
         User u = userService.getUserByEmail(email);
-        if(u != null || !u.getPassword().equals(password)) {
+        if(u == null || !u.getPassword().equals(password)) {
             return null;
         }
 
