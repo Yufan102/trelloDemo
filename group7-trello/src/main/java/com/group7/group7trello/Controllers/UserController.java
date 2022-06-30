@@ -60,7 +60,7 @@ public class UserController {
         userService.deleteUser(user);
     }
 
-    @PostMapping(value = "/login", consumes = "application/json")
+    @PostMapping(value = "/login", consumes = "application/json", produces = "application/json")
     public String login(@RequestBody Map<String, String> loginInfo){
         String email = loginInfo.get("email");
         String password = loginInfo.get("password");
@@ -69,12 +69,12 @@ public class UserController {
 
         User u = userService.getUserByEmail(email);
         if(u == null || !u.getPassword().equals(password)) {
-            return null;
+            return "{'UUID':''}";
         }
 
         Authorization testIfUserIsAlreadyValid = authorizationService.getLatestByUser(u);
         if(testIfUserIsAlreadyValid != null && authorizationService.isValid(testIfUserIsAlreadyValid.getUuid())) {
-            return testIfUserIsAlreadyValid.getUuid();
+            return String.format("{'UUID':'%s'}", testIfUserIsAlreadyValid.getUuid());
         }
 
         String UUID = tokenService.generateToken();
@@ -86,6 +86,6 @@ public class UserController {
         Authorization a = new Authorization(u, UUID, c.getTime());
         authorizationService.addAuthorization(a);
 
-        return UUID;
+        return String.format("{'UUID':'%s'}", UUID);
     }
 }
