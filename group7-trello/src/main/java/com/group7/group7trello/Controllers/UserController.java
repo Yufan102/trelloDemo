@@ -67,7 +67,7 @@ public class UserController {
 
 
         User u = userService.getUserByEmail(email);
-        if(!u.getPassword().equals(password)) {
+        if(u != null || !u.getPassword().equals(password)) {
             return null;
         }
 
