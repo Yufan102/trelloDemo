@@ -8,6 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
 
 @Repository
@@ -16,4 +17,5 @@ public interface AuthRepository extends JpaRepository<Authorization, Long> {
 
     Optional<Authorization> findByUUID(String UUID);
     Optional<Authorization> findByUser(User user);
+    List<Optional<Authorization>> findAllByUser(User user);
 }

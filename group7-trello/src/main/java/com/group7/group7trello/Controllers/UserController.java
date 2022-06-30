@@ -66,12 +66,13 @@ public class UserController {
         String password = loginInfo.get("password");
 
 
+
         User u = userService.getUserByEmail(email);
         if(u == null || !u.getPassword().equals(password)) {
             return null;
         }
 
-        Authorization testIfUserIsAlreadyValid = authorizationService.getByUser(userService.getUserByEmail(email));
+        Authorization testIfUserIsAlreadyValid = authorizationService.getLatestByUser(u);
         if(testIfUserIsAlreadyValid != null && authorizationService.isValid(testIfUserIsAlreadyValid.getUuid())) {
             return testIfUserIsAlreadyValid.getUuid();
         }

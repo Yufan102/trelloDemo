@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 
 @Transactional
@@ -34,6 +35,11 @@ public class AuthorizationServiceImpl implements AuthorizationService {
             a = optionalAuth.get();
         }
         return a;
+    }
+
+    public Authorization getLatestByUser(User user) {
+        List<Optional<Authorization>> a = authRepository.findAllByUser(user);
+        return a.get(a.size() - 1).get();
     }
 
     public Authorization addAuthorization(Authorization authorization) {
