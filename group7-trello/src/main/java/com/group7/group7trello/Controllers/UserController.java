@@ -1,8 +1,5 @@
 package com.group7.group7trello.Controllers;
-
 import com.group7.group7trello.Models.Authorization;
-import com.group7.group7trello.Models.Questions;
-import com.group7.group7trello.Models.SecurityQuestion;
 import com.group7.group7trello.Models.User;
 
 import com.group7.group7trello.Security.TokenService;
@@ -11,10 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Calendar;
-import java.util.Date;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
 @RestController
 @RequestMapping("/api/user")
@@ -60,21 +54,22 @@ public class UserController {
         userService.deleteUser(user);
     }
 
-    @PostMapping(value = "/login", consumes = "application/json")
-    public String login(@RequestBody Map<String, String> loginInfo){
+    @PostMapping(value = "/login", consumes = "application/json", produces = "application/json")
+    public Map<String,String> login(@RequestBody Map<String, String> loginInfo){
         String email = loginInfo.get("email");
         String password = loginInfo.get("password");
-
-
+        HashMap<String,String>map = new HashMap<>();
 
         User u = userService.getUserByEmail(email);
         if(u == null || !u.getPassword().equals(password)) {
-            return null;
+            map.put("UUID","");
+            return map;
         }
 
         Authorization testIfUserIsAlreadyValid = authorizationService.getLatestByUser(u);
         if(testIfUserIsAlreadyValid != null && authorizationService.isValid(testIfUserIsAlreadyValid.getUuid())) {
-            return testIfUserIsAlreadyValid.getUuid();
+            map.put("UUID",testIfUserIsAlreadyValid.getUuid());
+            return map;
         }
 
         String UUID = tokenService.generateToken();
@@ -86,6 +81,7 @@ public class UserController {
         Authorization a = new Authorization(u, UUID, c.getTime());
         authorizationService.addAuthorization(a);
 
-        return UUID;
+        map.put("UUID",UUID);
+        return map;
     }
 }

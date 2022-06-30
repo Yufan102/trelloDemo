@@ -39,7 +39,11 @@ public class AuthorizationServiceImpl implements AuthorizationService {
 
     public Authorization getLatestByUser(User user) {
         List<Optional<Authorization>> a = authRepository.findAllByUser(user);
-        return a.get(a.size() - 1).get();
+        if(a.size() != 0)
+        {
+            return a.get(a.size() - 1).get();
+        }
+        return null;
     }
 
     public Authorization addAuthorization(Authorization authorization) {

@@ -16,4 +16,38 @@ public class Workspace {
 
     @OneToMany(mappedBy = "workspace")
     private Set<UserRole> user_Roles = new HashSet<>();
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Set<Board> getBoards() {
+        return boards;
+    }
+
+    public void setBoards(Set<Board> boards) {
+        this.boards = boards;
+    }
+
+    public Set<UserRole> getUser_Roles() {
+        return user_Roles;
+    }
+
+    public void setUser_Roles(Set<UserRole> user_Roles) {
+        this.user_Roles = user_Roles;
+    }
+
+
 }
