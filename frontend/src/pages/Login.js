@@ -15,10 +15,15 @@ function LoginPage() {
             method: 'POST',
             body: JSON.stringify(user)
         })
-        .then(() => {
+        .then((res) => {
             //perform any other operations you want here first then redirect to homepage
             //stuff like checking if it's a valid email or if the password matches the password criteria etc
-            history.replace('/home')
+            if (res == null) {
+                console.log(res)
+            } else {
+                history.replace('/home')
+            }
+           
         }); //same URL as registeration, URL for database 
     }
 
