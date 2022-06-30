@@ -17,4 +17,36 @@ public class Board {
 
     @OneToMany(mappedBy = "board")
     private Set<Lists> Lists = new HashSet<>();
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Workspace getWorkspace() {
+        return workspace;
+    }
+
+    public void setWorkspace(Workspace workspace) {
+        this.workspace = workspace;
+    }
+
+    public Set<com.group7.group7trello.Models.Lists> getLists() {
+        return Lists;
+    }
+
+    public void setLists(Set<com.group7.group7trello.Models.Lists> lists) {
+        Lists = lists;
+    }
 }
