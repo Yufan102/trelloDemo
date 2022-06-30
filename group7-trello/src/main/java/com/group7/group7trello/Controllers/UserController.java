@@ -1,8 +1,5 @@
 package com.group7.group7trello.Controllers;
-
 import com.group7.group7trello.Models.Authorization;
-import com.group7.group7trello.Models.Questions;
-import com.group7.group7trello.Models.SecurityQuestion;
 import com.group7.group7trello.Models.User;
 
 import com.group7.group7trello.Security.TokenService;
