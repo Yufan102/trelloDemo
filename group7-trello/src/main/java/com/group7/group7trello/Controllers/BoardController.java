@@ -1,6 +1,5 @@
 package com.group7.group7trello.Controllers;
 
-import com.fasterxml.jackson.annotation.JacksonAnnotationsInside;
 import com.group7.group7trello.Models.Board;
 import com.group7.group7trello.Models.Workspace;
 import com.group7.group7trello.Repositories.BoardRepository;

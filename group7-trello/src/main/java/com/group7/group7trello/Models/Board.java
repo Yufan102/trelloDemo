@@ -1,4 +1,6 @@
 package com.group7.group7trello.Models;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.*;
 
@@ -12,6 +14,7 @@ public class Board {
     @Column(length=50, nullable=false, unique=false)
     private String name;
 
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "workspace_id")
     private Workspace workspace;

@@ -1,4 +1,6 @@
 package com.group7.group7trello.Models;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 @Entity
@@ -15,6 +17,7 @@ public class UserRole {
     @JoinColumn(name = "role_id")
     private Role role;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "workspace_id")
     private Workspace workspace;

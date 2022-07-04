@@ -1,5 +1,4 @@
 package com.group7.group7trello.Models;
-import com.group7.group7trello.Services.BoardService;
 
 import javax.persistence.*;
 import java.util.*;
