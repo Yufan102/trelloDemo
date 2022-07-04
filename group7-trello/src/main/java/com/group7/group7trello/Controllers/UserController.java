@@ -1,6 +1,5 @@
 package com.group7.group7trello.Controllers;
-import com.group7.group7trello.Models.Authorization;
-import com.group7.group7trello.Models.User;
+import com.group7.group7trello.Models.*;
 
 import com.group7.group7trello.Security.TokenService;
 import com.group7.group7trello.Services.*;
@@ -8,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Security;
 import java.util.*;
 
 @RestController
@@ -23,6 +23,18 @@ public class UserController {
 
     @Autowired
     AuthorizationService authorizationService;
+
+    @Autowired
+    QuestionsService questionsService;
+
+    @Autowired
+    SecurityQuestionService securityQuestionService;
+
+    @Autowired
+    WorkspaceService workspaceService;
+
+    @Autowired
+    UserRoleService userRoleService;
 
     //Working
     @GetMapping("/test")
@@ -56,20 +68,20 @@ public class UserController {
 
     @PostMapping(value = "/login", consumes = "application/json", produces = "application/json")
     public Map<String,String> login(@RequestBody Map<String, String> loginInfo){
+        HashMap<String,String>returnInfo = new HashMap<>();
         String email = loginInfo.get("email");
         String password = loginInfo.get("password");
-        HashMap<String,String>map = new HashMap<>();
 
         User u = userService.getUserByEmail(email);
         if(u == null || !u.getPassword().equals(password)) {
-            map.put("UUID","");
-            return map;
+            returnInfo.put("UUID","");
+            return returnInfo;
         }
 
         Authorization testIfUserIsAlreadyValid = authorizationService.getLatestByUser(u);
         if(testIfUserIsAlreadyValid != null && authorizationService.isValid(testIfUserIsAlreadyValid.getUuid())) {
-            map.put("UUID",testIfUserIsAlreadyValid.getUuid());
-            return map;
+            returnInfo.put("UUID",testIfUserIsAlreadyValid.getUuid());
+            return returnInfo;
         }
 
         String UUID = tokenService.generateToken();
@@ -81,7 +93,49 @@ public class UserController {
         Authorization a = new Authorization(u, UUID, c.getTime());
         authorizationService.addAuthorization(a);
 
-        map.put("UUID",UUID);
-        return map;
+        returnInfo.put("UUID",UUID);
+        return returnInfo;
+    }
+
+    @PostMapping(value = "/signup", consumes = "application/json", produces = "application/json")
+    public Map<String,String> signup(@RequestBody Map<String, String> signupInfo){
+        String first_name = signupInfo.get("first_name");
+        String last_name = signupInfo.get("last_name");
+        String email = signupInfo.get("email");
+        String password = signupInfo.get("password");
+        String answer = signupInfo.get("answer");
+        String question = signupInfo.get("question");
+
+
+        SecurityQuestion sq = new SecurityQuestion();
+        sq.setAnswer(answer);
+        sq.setQuestion(questionsService.getByID(Long.parseLong(question)));
+        securityQuestionService.createSecurityQuestion(sq);
+
+
+        User u = new User();
+        u.setFirst_name(first_name);
+        u.setLast_name(last_name);
+        u.setEmail(email);
+        u.setPassword(password);
+        u.setSecurity_question(sq);
+        userService.createUser(u);
+
+
+        // make workspace called first_name last_name first workspace
+        Workspace w = new Workspace();
+        w.setName(first_name + " " + last_name + " first workspace");
+        workspaceService.add(w);
+
+        // create user role entry
+        UserRole ur = new UserRole();
+        ur.setUser(u);
+        ur.setWorkspace(w);
+        userRoleService.createUserRole(ur);
+
+        HashMap<String,String>loginInfo = new HashMap<>();
+        loginInfo.put("email", email);
+        loginInfo.put("password", password);
+        return login(loginInfo);
     }
 }
