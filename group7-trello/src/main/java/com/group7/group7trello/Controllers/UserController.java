@@ -141,4 +141,47 @@ public class UserController {
         returnInfo.put("password", password);
         return login(returnInfo);
     }
+
+    @GetMapping(value = "/forget", consumes = "application/json", produces = "application/json")
+    public Map<String,String>forgetPassword_getTheQuestion(@RequestBody Map<String, String> forgetInfo){
+        Map<String, String>returnMap = new HashMap<>();
+        String email = forgetInfo.get("email");
+        User getUser = userService.getUserByEmail(email);
+
+        returnMap.put("question","");
+
+        if(getUser != null){
+            SecurityQuestion securityQuestion = getUser.getSecurity_question();
+            returnMap.put("question",securityQuestion.getQuestion().getQuestion());
+        }
+
+        return returnMap;
+    }
+
+    @PostMapping(value = "/forget/reset", consumes = "application/json", produces = "application/json")
+    public Map<String,String>forgetPassword_setTheNewPassword(@RequestBody Map<String, String> forgetInfo){
+        Map<String, String>returnMap = new HashMap<>();
+        returnMap.put("new_password","");
+
+        String email = forgetInfo.get("email");
+        String ans = forgetInfo.get("ans");
+        String newPassword = forgetInfo.get("new_password");
+        User getUser = userService.getUserByEmail(email);
+
+        if(getUser.getSecurity_question().getAnswer().equals(ans) && (email != null && ans != null && newPassword != null)){
+
+            if(newPassword.equals(getUser.getPassword())){
+                returnMap.put("new_password","same");
+                return returnMap;
+            }
+            getUser.setPassword(newPassword);
+
+            userService.createUser(getUser);
+
+            returnMap.put("new_password",newPassword);
+        }
+
+
+        return returnMap;
+    }
 }
