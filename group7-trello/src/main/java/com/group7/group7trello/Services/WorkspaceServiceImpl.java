@@ -1,9 +1,11 @@
 package com.group7.group7trello.Services;
 
+import com.group7.group7trello.Models.Board;
 import com.group7.group7trello.Models.Workspace;
 import com.group7.group7trello.Repositories.WorkspaceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.*;
 
