@@ -48,16 +48,6 @@ public class BoardController {
         Optional<Workspace>workspace = workspaceService.getByID(workspaceID);
 
         if(board.isPresent() && workspace.isPresent()){
-            /*
-            Workspace workspace1 = workspace.get();
-            Board board1 = board.get();
-            Set<Board> boards = workspace1.getBoards();
-            boards.add(board1);
-
-            workspace1.setBoards(boards);
-            workspaceService.add(workspace1);
-            return boardService.add(board1);
-             */
             boardService.addWorkspace(workspace.get(),board.get());
             return board.get();
         }
@@ -67,19 +57,14 @@ public class BoardController {
     }
 
     @GetMapping(value = "/getFromWorkspace/{workspaceID}",produces = "application/json")
-    public List<Board>getAllBoardsFromWorkspaceID(@PathVariable("workspaceID")Long workspaceID){
-        List<Board>returnBoard = new ArrayList<Board>();
-        List<Board>boards = boardService.findAll();
+    public Set<Board> getAllBoardsFromWorkspaceID(@PathVariable("workspaceID")Long workspaceID){
+        Optional<Workspace> workspace = workspaceService.getByID(workspaceID);
 
-        if(boards != null){
-            for (Board board : boards){
-                if(Objects.equals(board.getWorkspace().getId(), workspaceID)){
-                    returnBoard.add(board);
-                }
-            }
+        if(workspace.isPresent()){
+            return workspace.get().getBoards();
         }
 
-        return returnBoard;
+        return new HashSet<>();
 
     }
 }
