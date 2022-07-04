@@ -99,6 +99,7 @@ public class UserController {
 
     @PostMapping(value = "/signup", consumes = "application/json", produces = "application/json")
     public Map<String,String> signup(@RequestBody Map<String, String> signupInfo){
+        HashMap<String,String>returnInfo = new HashMap<>();
         String first_name = signupInfo.get("first_name");
         String last_name = signupInfo.get("last_name");
         String email = signupInfo.get("email");
@@ -106,6 +107,10 @@ public class UserController {
         String answer = signupInfo.get("answer");
         String question = signupInfo.get("question");
 
+        if( userService.getUserByEmail(email) != null) {
+            returnInfo.put("UUID","");
+            return returnInfo;
+        }
 
         SecurityQuestion sq = new SecurityQuestion();
         sq.setAnswer(answer);
@@ -133,9 +138,8 @@ public class UserController {
         ur.setWorkspace(w);
         userRoleService.createUserRole(ur);
 
-        HashMap<String,String>loginInfo = new HashMap<>();
-        loginInfo.put("email", email);
-        loginInfo.put("password", password);
-        return login(loginInfo);
+        returnInfo.put("email", email);
+        returnInfo.put("password", password);
+        return login(returnInfo);
     }
 }
