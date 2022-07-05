@@ -10,7 +10,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
 
-@Controller
+@CrossOrigin("*")
+
 @RestController
 @RequestMapping("/api/workspace")
 public class WorkspaceController {

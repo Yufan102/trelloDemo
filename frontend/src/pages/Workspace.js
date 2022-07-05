@@ -1,20 +1,41 @@
+import { useParams } from "react-router-dom";
+import React, { useEffect, useState } from 'react';
+import ViewBoards from '../components/ViewBoards';
+
 
 function Workspace() {
+    const uuid = useParams().uuid
+    console.log(uuid)
+    const [workspaceData, setWorkspaceData] = useState([]);
+
+    const url = process.env.REACT_APP_URL;
+
+    function getAllWorkspaces() {
+        fetch(url+'/workspace/getAll',{
+            headers:{
+                Authorization:'Bearer '+uuid
+            }
+        })
+            .then(response => response.json())
+            .then(workspaces => {
+                setWorkspaceData(workspaces);
+            });
+    };
+
+    useEffect(function () {
+        getAllWorkspaces();
+    },[]);
+
+
     return (
-    <div class="workspace">
-        <p>workspace</p>
-        <div class="create-workspace"><a href="javascript:;">Create a new workspace</a></div>
-        <div class="create-form">
-                <h2 class="title">Create your new workspace
-                    <span><a href="javascript:void(0);" class="close-btn">Close</a></span>
-                </h2>
-            <div class="create-name">
-            <label>Workspace name: </label>
-            </div>
-            <button class="btn-2">Submit</button>
-        </div>
-        <div class="new-workspace"></div>
-    </div>
+        <>
+
+            <h1>Your workspaces: </h1>
+            <section>
+                <ViewBoards workspaces={workspaceData} />
+            </section>
+   
+        </>
     );
 }
 
