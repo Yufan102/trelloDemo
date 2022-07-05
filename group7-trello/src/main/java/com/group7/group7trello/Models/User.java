@@ -1,4 +1,6 @@
 package com.group7.group7trello.Models;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.*;
 
@@ -21,6 +23,7 @@ public class User {
     @Column(length=50, nullable=false, unique=false)
     private String password;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "security_question")
     private SecurityQuestion security_question;

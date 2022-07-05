@@ -3,6 +3,7 @@ package com.group7.group7trello.Services;
 import com.group7.group7trello.Models.User;
 import com.group7.group7trello.Repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -50,5 +51,10 @@ public class UserServiceImpl implements UserService {
         User currentUser = userRepository.findById(id).get();
         //currentUser.setSecurity_question();
         return userRepository.save(currentUser);
+    }
+
+    public User loggedInUser() {
+        String email = SecurityContextHolder.getContext().getAuthentication().getPrincipal().toString();
+        return getUserByEmail(email);
     }
 }

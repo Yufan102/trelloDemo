@@ -1,4 +1,6 @@
 package com.group7.group7trello.Models;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.*;
 
@@ -8,18 +10,22 @@ public class Ticket {
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "assign_user_id")
     private User assign_user_id;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "list_id")
     private Lists list_id;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "sprint_id")
     private Sprint sprint_id;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "report_to_id")
     private User report_to_id;

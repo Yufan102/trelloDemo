@@ -23,7 +23,7 @@ function LoginPage() {
             if (data.UUID.length === 0) {
                 alert("Invalid email or password.")
             } else {
-                history.replace('/home')
+                history.replace('/workspace/'+data.UUID)
             }
            
         }).catch(err => {

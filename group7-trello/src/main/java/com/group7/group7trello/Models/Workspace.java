@@ -1,8 +1,10 @@
 package com.group7.group7trello.Models;
+
 import javax.persistence.*;
 import java.util.*;
 
 @Entity
+@Table(name = "workspace")
 public class Workspace {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -11,7 +13,7 @@ public class Workspace {
     @Column(length=50, nullable=false, unique=false)
     private String name;
 
-    @OneToMany(mappedBy = "workspace")
+    @OneToMany(mappedBy = "workspace",cascade = CascadeType.ALL)
     private Set<Board> boards = new HashSet<>();
 
     @OneToMany(mappedBy = "workspace")
@@ -41,6 +43,10 @@ public class Workspace {
         this.boards = boards;
     }
 
+    public void addBoard(Board board)
+    {
+        this.boards.add(board);
+    }
     public Set<UserRole> getUser_Roles() {
         return user_Roles;
     }

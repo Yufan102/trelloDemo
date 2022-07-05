@@ -1,0 +1,56 @@
+
+html {
+    height: 100%;
+}
+
+body {
+    height: 100%;
+    width: 100%;
+    font-family: serif;
+    background-color: rgb(68, 119, 236);
+    margin-left: auto;
+    margin-right: auto;
+    
+}
+#box{
+    margin: 0 auto;
+    justify-content: center;
+    width: 50%;
+}
+
+#main {
+    text-align: center;
+    justify-items: center;
+    align-items: center;
+    border-radius: 5px;
+    padding: 10px 10px 10px 10px;
+    background-color: white;
+    width: 50%;
+    margin: 0 auto;
+}
+
+#form {
+    justify-items: center;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+    width: 50%;
+    height: 50%;
+}
+
+.field {
+    padding: 0px 0px 5px 5px;
+    margin: 5px;
+}
+
+#submit {
+    justify-items: center;
+    align-items: center;
+    padding: 5px;
+    color: rgb(154, 154, 249);
+    font-weight: bold;
+}
+
+#error {
+    text-align: center;
+}

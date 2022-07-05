@@ -3,6 +3,7 @@ import Navigation from "./components/Navigation";
 import HomePage from "./pages/Home";
 import LoginPage from "./pages/Login";
 import RegisterPage from "./pages/Register";
+import Workspace from "./pages/Workspace";
 
 function App() {
   return (
@@ -17,6 +18,9 @@ function App() {
         </Route>
         <Route path="/home">
           <HomePage />
+        </Route>
+        <Route path="/workspace/:uuid" exact>
+          <Workspace />
         </Route>
       </Switch>
     </div>

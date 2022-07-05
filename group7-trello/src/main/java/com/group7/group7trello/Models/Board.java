@@ -1,8 +1,11 @@
 package com.group7.group7trello.Models;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.*;
 
 @Entity
+@Table(name = "board")
 public class Board {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -11,13 +14,13 @@ public class Board {
     @Column(length=50, nullable=false, unique=false)
     private String name;
 
-    @ManyToOne
+    @JsonIgnore
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "workspace_id")
     private Workspace workspace;
 
     @OneToMany(mappedBy = "board")
     private Set<Lists> Lists = new HashSet<>();
-
     public Long getId() {
         return id;
     }
