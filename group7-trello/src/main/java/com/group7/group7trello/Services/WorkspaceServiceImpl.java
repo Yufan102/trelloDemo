@@ -20,7 +20,7 @@ public class WorkspaceServiceImpl implements  WorkspaceService {
     }
 
     @Override
-    public Workspace add(Workspace workspace) {
+    public Workspace createWorkspace(Workspace workspace) {
         return workspaceRepository.save(workspace);
     }
 

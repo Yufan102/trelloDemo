@@ -74,6 +74,7 @@ public class UserController {
         User u = userService.getUserByEmail(email);
         if(u == null || !u.getPassword().equals(password)) {
             returnInfo.put("UUID","");
+            returnInfo.put("error","password not found");
             return returnInfo;
         }
 
@@ -89,7 +90,10 @@ public class UserController {
         c.setTime(new Date());
         c.add(Calendar.HOUR_OF_DAY, 12);
 
-        Authorization a = new Authorization(u, UUID, c.getTime());
+        Authorization a = new Authorization();
+        a.setUser(u);
+        a.setUuid(UUID);
+        a.setExpiration(c.getTime());
         authorizationService.addAuthorization(a);
 
         returnInfo.put("UUID",UUID);
@@ -104,10 +108,11 @@ public class UserController {
         String email = signupInfo.get("email");
         String password = signupInfo.get("password");
         String answer = signupInfo.get("answer");
-        String question = signupInfo.get("question");
+        String question = signupInfo.get("question_id");
 
-        if( userService.getUserByEmail(email) != null) {
+        if(userService.getUserByEmail(email) != null) {
             returnInfo.put("UUID","");
+            returnInfo.put("error","email conflict");
             return returnInfo;
         }
 
@@ -129,7 +134,7 @@ public class UserController {
         // make workspace called first_name last_name first workspace
         Workspace w = new Workspace();
         w.setName(first_name + " " + last_name + " first workspace");
-        workspaceService.add(w);
+        workspaceService.createWorkspace(w);
 
         // create user role entry
         UserRole ur = new UserRole();
