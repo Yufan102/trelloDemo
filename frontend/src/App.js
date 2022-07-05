@@ -4,6 +4,7 @@ import HomePage from "./pages/Home";
 import LoginPage from "./pages/Login";
 import RegisterPage from "./pages/Register";
 import Workspace from "./pages/Workspace";
+import CreateWorkspace from "./pages/CreateWorkspace";
 
 function App() {
   return (
@@ -19,8 +20,11 @@ function App() {
         <Route path="/home">
           <HomePage />
         </Route>
-        <Route path="/workspace/:uuid" exact>
+        <Route path={["/workspace/:uuid", "/workspace"]} exact>
           <Workspace />
+        </Route>
+        <Route path="/createworkspace" exact>
+          <CreateWorkspace />
         </Route>
       </Switch>
     </div>

@@ -14,12 +14,12 @@ function ViewBoards(props) {
                                     <Typography component='h4' variant='h4'>
                                         {workspace.name}
                                     </Typography>
-                                    <Typography component='p' variant='p'>
+                                    {/* <Typography component='p' variant='p'>
                                         {workspace.boards}
                                     </Typography>
                                     <Typography component='p' variant='p'>
                                         {workspace.user_Roles}
-                                    </Typography>
+                                    </Typography> */}
                 
                                 </CardContent>
                             </Card>
