@@ -20,9 +20,7 @@ function ViewBoards(props) {
                                     <Typography component='p' variant='p'>
                                         {workspace.user_Roles}
                                     </Typography>
-                                    {/* <Button variant='contained' sx={{ marginTop: '16px' }}>
-                                        View All Tasks
-                                    </Button> */}
+                
                                 </CardContent>
                             </Card>
                         </Grid>

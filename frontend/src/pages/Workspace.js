@@ -1,25 +1,27 @@
-import { useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import React, { useEffect, useState } from 'react';
 import ViewBoards from '../components/ViewBoards';
 
 
-function Workspace() {
-    const uuid = useParams().uuid
-    console.log(uuid)
+
+function WorkspacePage(){
     const [workspaceData, setWorkspaceData] = useState([]);
 
     const url = process.env.REACT_APP_URL;
+    
 
     function getAllWorkspaces() {
-        fetch(url+'/workspace/getAll',{
+        fetch('http://localhost:8080/api/workspace/getAll',{
             headers:{
-                Authorization:'Bearer '+uuid
+                'Authorization': 'Bearer 4a02e308-cb90-49c0-9fc7-5793094ef9ef'
             }
+
         })
-            .then(response => response.json())
-            .then(workspaces => {
-                setWorkspaceData(workspaces);
-            });
+        .then(response => response.json(),
+        )
+        .then(workspaces => {
+            setWorkspaceData(workspaces);
+        });
     };
 
     useEffect(function () {
@@ -29,14 +31,27 @@ function Workspace() {
 
     return (
         <>
-
-            <h1>Your workspaces: </h1>
+            <Link to='/createworkspace'>Create a new workspace</Link>
+            <h1>Your workspacessssssss: </h1>
             <section>
                 <ViewBoards workspaces={workspaceData} />
             </section>
+            
+            <section>
+                test
+            </section>
+            
    
         </>
     );
+    // return (
+    //     <>  
+        
+            
+    //         <Link to='/createworkspace'>Create a new workspace</Link>
+    //         <h1>Your workspaces: </h1>
+    //     </>
+    // );
 }
 
-export default Workspace;
+export default WorkspacePage;
