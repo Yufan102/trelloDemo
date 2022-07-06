@@ -1,6 +1,6 @@
 import { Link, useParams } from "react-router-dom";
 import React, { useEffect, useState } from 'react';
-import ViewBoards from '../components/ViewBoards';
+import ViewWorkspaces from '../components/ViewWorkspaces';
 
 
 
@@ -26,7 +26,7 @@ function WorkspacePage(){
 
     useEffect(function () {
         getAllWorkspaces();
-    });
+    }, []);
 
 
     return (
@@ -34,11 +34,8 @@ function WorkspacePage(){
             <Link to='/createworkspace'>Create a new workspace</Link>
             <h1>Your workspacessssssss: </h1>
             <section>
-                <ViewBoards workspaces={workspaceData} />
+                <ViewWorkspaces workspaces={workspaceData} />
             </section>
-
-            
-   
         </>
     );
 }

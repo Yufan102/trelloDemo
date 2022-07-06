@@ -5,6 +5,10 @@ import LoginPage from "./pages/Login";
 import RegisterPage from "./pages/Register";
 import Workspace from "./pages/Workspace";
 import CreateWorkspace from "./pages/CreateWorkspace";
+import Boards from "./pages/Boards";
+import CreateBoard from "./pages/CreateBoard";
+import DeleteBoard from "./pages/DeleteBoard";
+import DeleteWorkspace from "./pages/DeleteWorkspace";
 
 function App() {
   return (
@@ -25,6 +29,18 @@ function App() {
         </Route>
         <Route path="/createworkspace" exact>
           <CreateWorkspace />
+        </Route>
+        <Route path="/boards/:wsid" exact>
+          <Boards />
+        </Route>
+        <Route path="/createboard" exact>
+          <CreateBoard />
+        </Route>
+        <Route path="/deleteboard/:bdid" exact>
+          <DeleteBoard />
+        </Route>
+        <Route path="/deleteworkspace/:wsid" exact>
+          <DeleteWorkspace />
         </Route>
       </Switch>
     </div>
