@@ -21,7 +21,7 @@ public class WorkspaceController {
 
     @GetMapping(value = "/getAll")
     public List<Workspace> getAllWorkSpace(){
-        return workspaceService.findAll();
+        return workspaceService.findAllByUserRole();
     }
 
     @GetMapping(value = "/get/{id}", produces = "application/json")
