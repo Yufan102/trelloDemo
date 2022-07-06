@@ -24,7 +24,7 @@ public class WorkspaceServiceImpl implements  WorkspaceService {
     @Override
     public Optional<Workspace> getByID(Long id) {
         return workspaceRepository.findById(id);
-    }c
+    }
 
     @Override
     public Workspace createWorkspace(Workspace workspace) {
