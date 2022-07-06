@@ -32,7 +32,7 @@ function WorkspacePage(){
     return (
         <>
             <Link to='/createworkspace'>Create a new workspace</Link>
-            <h1>Your workspacessssssss: </h1>
+            <h1>Your workspaces: </h1>
             <section>
                 <ViewWorkspaces workspaces={workspaceData} />
             </section>

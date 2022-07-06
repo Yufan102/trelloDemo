@@ -18,6 +18,9 @@ function ViewWorkspaces(props) {
                                     <Link to={'/deleteworkspace/'+workspace.id}><Typography component='button' variant='button'>
                                         Delete
                                     </Typography></Link>
+                                    <Link to={'/addmember/'+workspace.id}><Typography component='button' variant='button'>
+                                        Add an member by email
+                                    </Typography></Link>
                                 </CardContent>
                             </Card>
                         </Grid>

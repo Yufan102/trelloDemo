@@ -8,7 +8,7 @@ function DeleteWorkspace() {
     const history = useHistory();
     
     function deleteWorkspace(){
-        fetch(url+'/workspace/delete?id='+window.localStorage.getItem('wsid'), {
+        fetch(url+'/workspace/delete?workspace='+window.localStorage.getItem('wsid'), {
             method: 'DELETE',
             headers: {
                 'Authorization': 'Bearer '+ window.localStorage.getItem('uuid')

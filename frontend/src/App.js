@@ -9,6 +9,7 @@ import Boards from "./pages/Boards";
 import CreateBoard from "./pages/CreateBoard";
 import DeleteBoard from "./pages/DeleteBoard";
 import DeleteWorkspace from "./pages/DeleteWorkspace";
+import AddMember from "./pages/AddMember";
 
 function App() {
   return (
@@ -41,6 +42,9 @@ function App() {
         </Route>
         <Route path="/deleteworkspace/:wsid" exact>
           <DeleteWorkspace />
+        </Route>
+        <Route path="/addmember/:wsid" exact>
+          <AddMember />
         </Route>
       </Switch>
     </div>
