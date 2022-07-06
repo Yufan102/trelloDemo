@@ -28,7 +28,7 @@ public class WorkspaceController {
     public Optional<Workspace> getByID(@PathVariable("id") Long id){return workspaceService.getByID(id);}
 
     //if deleted, will return True
-    @PostMapping("/delete")
+    @DeleteMapping("/delete")
     public Map<String, Boolean> delete(Workspace workspace){
         return workspaceService.delete(workspace);
     }
