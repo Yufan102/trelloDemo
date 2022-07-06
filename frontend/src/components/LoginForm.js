@@ -20,6 +20,7 @@ function LoginForm(props){
             <input type="email" required placeholder="Email" ref={emailRef}/>
             <input type="password" required placeholder="Password" ref={passwordRef}/>
             <button>Submit</button>
+            <button>Forgot Password</button>
         </form>
     );
 }

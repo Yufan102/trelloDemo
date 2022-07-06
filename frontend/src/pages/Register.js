@@ -19,7 +19,7 @@ const url = process.env.REACT_APP_URL;
     }
     return (
         <div>
-            <h1>Registeration Page</h1>
+            <h1>Sign Up Here!</h1>
             <RegisterForm registerUser={registerUserHandler} />
         </div>
         
