@@ -1,6 +1,7 @@
 package com.group7.group7trello.Services;
 
 import com.group7.group7trello.Models.Board;
+import com.group7.group7trello.Models.UserRole;
 import com.group7.group7trello.Models.Workspace;
 import com.group7.group7trello.Repositories.WorkspaceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,12 @@ public class WorkspaceServiceImpl implements  WorkspaceService {
     @Autowired
     private WorkspaceRepository workspaceRepository;
 
+    @Autowired
+    private UserService userService;
+
+    @Autowired
+    private UserRoleService userRoleService;
+
     @Override
     public Optional<Workspace> getByID(Long id) {
         return workspaceRepository.findById(id);
@@ -21,7 +28,14 @@ public class WorkspaceServiceImpl implements  WorkspaceService {
 
     @Override
     public Workspace createWorkspace(Workspace workspace) {
-        return workspaceRepository.save(workspace);
+        Workspace w = workspaceRepository.save(workspace);
+
+        UserRole ur = new UserRole();
+        ur.setWorkspace(w);
+        ur.setUser(userService.loggedInUser());
+        userRoleService.createUserRole(ur);
+
+        return w;
     }
 
     @Override
@@ -37,5 +51,10 @@ public class WorkspaceServiceImpl implements  WorkspaceService {
         return workspaceRepository.findAll();
     }
 
+
+    @Override
+    public List<Workspace> findAllByUserRole() {
+        return workspaceRepository.findAllByUserRole(userService.loggedInUser().getId());
+    }
 
 }

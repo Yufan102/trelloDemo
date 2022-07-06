@@ -18,4 +18,6 @@ public interface WorkspaceService {
     public Map<String, Boolean> delete(Workspace workspace);
 
     public List<Workspace> findAll();
+
+    public List<Workspace> findAllByUserRole();
 }

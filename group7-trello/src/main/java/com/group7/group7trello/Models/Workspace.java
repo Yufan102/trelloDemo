@@ -16,7 +16,7 @@ public class Workspace {
     @OneToMany(mappedBy = "workspace",cascade = CascadeType.ALL)
     private Set<Board> boards = new HashSet<>();
 
-    @OneToMany(mappedBy = "workspace")
+    @OneToMany(mappedBy = "workspace", cascade = CascadeType.ALL)
     private Set<UserRole> user_Roles = new HashSet<>();
 
     public Long getId() {
