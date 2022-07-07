@@ -20,6 +20,7 @@ function Boards() {
             });
     };
 
+
     useEffect(function () {
         getAllBoards();
     }, []);
@@ -27,7 +28,8 @@ function Boards() {
 
     return (
         <>
-            <Link to='/createboard'>Create a new board</Link>
+            <Link to='/createboard'>Create a new board</Link><br></br>
+            <Link to={'/workspace/'+ window.localStorage.getItem('uuid')}>Back to workspace</Link>
             <section>
                 <ViewBoards boards={boardsData} />
             </section>

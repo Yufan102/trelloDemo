@@ -13,20 +13,22 @@ function DeleteWorkspace() {
             headers: {
                 'Authorization': 'Bearer '+ window.localStorage.getItem('uuid')
             }
-        }).then(() => history.replace('/workspace/'+ window.localStorage.getItem('uuid')))
+        }).then(() => history.replace('/workspace/'+ window.localStorage.getItem('uuid'))).then(() => window.location.reload());
     }
-
 
     return(
         <>
-            <Link to={'/workspace/'+ window.localStorage.getItem('uuid')}><button onClick={deleteWorkspace}>
-                confirm
+            <Link to={'/workspace/'+ window.localStorage.getItem('uuid')}>
+                <button onClick={deleteWorkspace}>
+                Confirm
             </button></Link>
             <Link to={'/workspace/'+ window.localStorage.getItem('uuid')}>
-                goback
-            </Link>
+            <button>
+                Cancel
+            </button></Link>
         </>
     );
+
 }
 
 export default DeleteWorkspace;

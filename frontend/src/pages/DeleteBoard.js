@@ -13,7 +13,7 @@ function DeleteBoard() {
             headers: {
                 'Authorization': 'Bearer '+ window.localStorage.getItem('uuid')
             }
-        }).then(() => history.replace('/boards/'+ window.localStorage.getItem('wsid')))
+        }).then(() => history.replace('/boards/'+ window.localStorage.getItem('wsid'))).then(() => window.location.reload())
     }
 
 
