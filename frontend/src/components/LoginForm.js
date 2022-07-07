@@ -13,6 +13,7 @@ function LoginForm(props){
 
         //Send the values to server
         props.loginUser(user);
+        console.log(user);
     }
 
     return (
