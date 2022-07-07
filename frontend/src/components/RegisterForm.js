@@ -1,13 +1,14 @@
 import React, {useState, useEffect, useRef} from 'react';
 import {Grid, TextField, makeStyles, FormControl, FormLabel, Select} from '@material-ui/core';
 import AsyncSelect from 'react-select/async';
+import { alignProperty } from '@mui/material/styles/cssUtils';
 
 const useStyle = makeStyles(theme =>({
     root: {
         '& .MuiFormControl-root': {
             width: '80%',
             margin: theme.spacing(1)
-        }
+        },        
     }
 }))
 
@@ -39,7 +40,7 @@ function RegisterForm(props){
     const classes = useStyle();
 
     return (
-        <form className={classes.root} onSubmit={submitHandler}>
+        <form className={classes.root} onSubmit={submitHandler} autoComplete="off">
            <Grid container>
                 <Grid item xs={6}>
                     <TextField

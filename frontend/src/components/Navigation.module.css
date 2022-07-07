@@ -1,0 +1,6 @@
+.navbar {
+    width: 20vw;
+	display: flex;
+    justify-content: space-evenly;
+    flex-direction: row;
+}

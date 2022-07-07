@@ -1,10 +1,21 @@
 import RegisterForm from "../components/RegisterForm";
 import { useHistory } from "react-router-dom";
+import {Paper, makeStyles} from '@material-ui/core';
+import styles from './Register.module.css'
+
+
+const useStyle = makeStyles(theme =>({
+    pageContent: {
+        width: '80%',            
+        margin: theme.spacing(5),
+        padding: theme.spacing(3)
+    }
+}))
 
 function RegisterPage() {
-const history = useHistory();
-
-const url = process.env.REACT_APP_URL;
+    const history = useHistory();
+    const url = process.env.REACT_APP_URL;
+    const classes = useStyle();
 
     function registerUserHandler(user) {
         fetch(url + '/user/signup', {
@@ -18,11 +29,12 @@ const url = process.env.REACT_APP_URL;
         }).then(() => history.replace('/login'))
     }
     return (
-        <div>
+        <div className={styles.body}>
             <h1>Sign Up Here!</h1>
-            <RegisterForm registerUser={registerUserHandler} />
+            <Paper className={classes.pageContent}>
+                <RegisterForm registerUser={registerUserHandler} />
+            </Paper>
         </div>
-        
     );
 }
 
