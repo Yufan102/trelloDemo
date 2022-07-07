@@ -2,13 +2,14 @@ import RegisterForm from "../components/RegisterForm";
 import { useHistory } from "react-router-dom";
 import {Paper, makeStyles} from '@material-ui/core';
 import styles from './Register.module.css'
+import { blue } from "@material-ui/core/colors";
 
 
 const useStyle = makeStyles(theme =>({
     pageContent: {
         width: '80%',            
         margin: theme.spacing(5),
-        padding: theme.spacing(3)
+        padding: theme.spacing(3),
     }
 }))
 

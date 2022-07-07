@@ -1,7 +1,5 @@
 import React, {useState, useEffect, useRef} from 'react';
 import {Grid, TextField, makeStyles, FormControl, FormLabel, Select} from '@material-ui/core';
-import AsyncSelect from 'react-select/async';
-import { alignProperty } from '@mui/material/styles/cssUtils';
 
 const fetchData = async (url) => {
     return fetch(url)
@@ -19,32 +17,30 @@ const useStyle = makeStyles(theme =>({
 }))
 
 function RegisterForm(props){
-    const fullNameRef = useRef();
     const fisrtNameRef = useRef();
     const lastNameRef = useRef();
     const emailRef = useRef();
     const passwordRef = useRef();
-    const securityQuestionRef = useRef();
-    const securityAnswerRef = useRef();
+    const answerRef = useRef();
 
     function submitHandler(event){
         event.preventDefault();
         //Read the values
-        const fullName = fullNameRef.current.value;
-        const firstName = firstName.current.value;
-        const lastName = lastName.current.value;
+        const first_name = fisrtNameRef.current.value;
+        const last_name = lastNameRef.current.value;
         const email = emailRef.current.value;
         const password = passwordRef.current.value;
-        const securityQuestion = securityQuestionRef.current.value;
-        const securityAnswer = securityAnswerRef.current.value;
-        const user = {fullName, email, password, securityQuestion, securityAnswer};
+        const answer = answerRef.current.value;
+        const user = {first_name, last_name, email, password, answer, question_id};
 
         //Send the values to server
         props.registerUser(user);
+        console.log(user);
     }
 
     const classes = useStyle();
-    const [questions, setQuestions] = useState([]) //--> keep data in component state
+    const [questions, setQuestions] = useState([]); //--> keep data in component state
+    const [question_id, setQuestionID] = useState();
 
     useEffect(()=> {
         fetchData('http://localhost:8080/api/question/getAll').then(response => setQuestions(response))
@@ -57,13 +53,13 @@ function RegisterForm(props){
                     <TextField
                         variant="outlined"
                         label="First Name"
-                        name="firstName"
+                        name="first_name"
                         ref={fisrtNameRef}
                     />  
                     <TextField
                         variant="outlined"
                         label="Last Name"
-                        name="lastName"
+                        name="last_name"
                         ref={lastNameRef}
                     />   
                     <TextField
@@ -76,7 +72,7 @@ function RegisterForm(props){
                 <Grid item xs={6}>
                     <FormControl>
                         <FormLabel>Security Question</FormLabel>
-                        <Select defaultValue={''}>
+                        <Select defaultValue={''} onChange={(e) => setQuestionID(e.value)}>
                             <option value='' disabled>Choose a security question</option>
                             {questions.map((question) => (
                                 <option key={question.id} value={question.id}>{question.question}</option>
@@ -86,8 +82,8 @@ function RegisterForm(props){
                     <TextField
                         variant="outlined"
                         label="Security Answer"
-                        name="securityAnswer"
-                        ref={securityAnswerRef}
+                        name="answer"
+                        ref={answerRef}
                     /> 
                     <TextField
                         variant="outlined"
@@ -100,12 +96,7 @@ function RegisterForm(props){
             <button>Submit</button>
         </form>
     );
-}
 
-{/* <input type="text" required placeholder="Full name" ref={fullNameRef}/>
-<input type="email" required placeholder="Email" ref={emailRef}/>
-<input type="password" required placeholder="Password" ref={passwordRef}/>
-<input type="text" required placeholder="Security Question" ref={securityQuestionRef}/>
-<input type="text" required placeholder="Security Answer" ref={securityAnswerRef}/> */}
+}
 
 export default RegisterForm;
