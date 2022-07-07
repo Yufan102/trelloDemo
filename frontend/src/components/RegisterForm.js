@@ -3,6 +3,12 @@ import {Grid, TextField, makeStyles, FormControl, FormLabel, Select} from '@mate
 import AsyncSelect from 'react-select/async';
 import { alignProperty } from '@mui/material/styles/cssUtils';
 
+const fetchData = async (url) => {
+    return fetch(url)
+        .then(response => response.json())
+        .catch(error => console.log('error', error))
+}
+
 const useStyle = makeStyles(theme =>({
     root: {
         '& .MuiFormControl-root': {
@@ -38,6 +44,11 @@ function RegisterForm(props){
     }
 
     const classes = useStyle();
+    const [questions, setQuestions] = useState([]) //--> keep data in component state
+
+    useEffect(()=> {
+        fetchData('http://localhost:8080/api/question/getAll').then(response => setQuestions(response))
+    }, []);
 
     return (
         <form className={classes.root} onSubmit={submitHandler} autoComplete="off">
@@ -65,8 +76,11 @@ function RegisterForm(props){
                 <Grid item xs={6}>
                     <FormControl>
                         <FormLabel>Security Question</FormLabel>
-                        <Select>
-                        
+                        <Select defaultValue={''}>
+                            <option value='' disabled>Choose a security question</option>
+                            {questions.map((question) => (
+                                <option key={question.id} value={question.id}>{question.question}</option>
+                            ))}
                         </Select>
                     </FormControl>
                     <TextField
