@@ -17,22 +17,24 @@ const useStyle = makeStyles(theme =>({
 }))
 
 function RegisterForm(props){
-    const fisrtNameRef = useRef();
-    const lastNameRef = useRef();
-    const emailRef = useRef();
-    const passwordRef = useRef();
-    const answerRef = useRef();
+    const [fisrtNameValue, setFirstName] = useState('') 
+    const [lastNameValue, setLastName] = useState('') 
+    const [emailValue, setEmail] = useState('') 
+    const [passwordValue, setPassword] = useState('') 
+    const [answerValue, setAnswer] = useState('') 
+    const [question_id, setQuestionID] = useState('')
 
     function submitHandler(event){
         event.preventDefault();
         //Read the values
-        const first_name = fisrtNameRef.current.value;
-        const last_name = lastNameRef.current.value;
-        const email = emailRef.current.value;
-        const password = passwordRef.current.value;
-        const answer = answerRef.current.value;
+        
+        const first_name = fisrtNameValue;
+        const last_name = lastNameValue;
+        const email = emailValue;
+        const password = passwordValue;
+        const answer = answerValue;
         const user = {first_name, last_name, email, password, answer, question_id};
-
+        
         //Send the values to server
         props.registerUser(user);
         console.log(user);
@@ -40,7 +42,6 @@ function RegisterForm(props){
 
     const classes = useStyle();
     const [questions, setQuestions] = useState([]); //--> keep data in component state
-    const [question_id, setQuestionID] = useState();
 
     useEffect(()=> {
         fetchData('http://localhost:8080/api/question/getAll').then(response => setQuestions(response))
@@ -54,25 +55,28 @@ function RegisterForm(props){
                         variant="outlined"
                         label="First Name"
                         name="first_name"
-                        ref={fisrtNameRef}
+                        value={fisrtNameValue}
+                        onChange={(e) => setFirstName(e.target.value)} 
                     />  
                     <TextField
                         variant="outlined"
                         label="Last Name"
                         name="last_name"
-                        ref={lastNameRef}
+                        value={lastNameValue}
+                        onChange={(e) => setLastName(e.target.value)} 
                     />   
                     <TextField
                         variant="outlined"
                         label="Email"
                         name="email"
-                        ref={emailRef}
+                        value={emailValue}
+                        onChange={(e) => setEmail(e.target.value)} 
                     />               
                 </Grid>
                 <Grid item xs={6}>
                     <FormControl>
                         <FormLabel>Security Question</FormLabel>
-                        <Select defaultValue={''} onChange={(e) => setQuestionID(e.value)}>
+                        <Select defaultValue={''} onChange={(e) => setQuestionID(e.target.value)}>
                             <option value='' disabled>Choose a security question</option>
                             {questions.map((question) => (
                                 <option key={question.id} value={question.id}>{question.question}</option>
@@ -83,13 +87,15 @@ function RegisterForm(props){
                         variant="outlined"
                         label="Security Answer"
                         name="answer"
-                        ref={answerRef}
+                        value={answerValue}
+                        onChange={(e) => setAnswer(e.target.value)} 
                     /> 
                     <TextField
                         variant="outlined"
                         label="Password"
                         name="password"
-                        ref={passwordRef}
+                        value={passwordValue}
+                        onChange={(e) => setPassword(e.target.value)} 
                     /> 
                 </Grid>
            </Grid>
