@@ -22,7 +22,7 @@ public class SecurityConfiguration {
         http.cors().and()
                 .csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/api/user/login", "/api/user/signup","/api/user/forget","/api/user/forget/reset").permitAll()
+                .antMatchers("/api/user/login", "/api/user/signup","/api/user/forget","/api/user/forget/reset","/api/question/getAll").permitAll()
                 .anyRequest().authenticated().and()
                 .apply(new HttpConfigurer(tokenService)).and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
