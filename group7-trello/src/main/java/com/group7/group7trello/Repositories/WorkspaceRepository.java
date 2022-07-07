@@ -12,4 +12,7 @@ import java.util.List;
 public interface WorkspaceRepository extends JpaRepository<Workspace, Long> {
     @Query(nativeQuery = true, value = "SELECT DISTINCT w.id, w.name FROM workspace w JOIN (user_role ur, users u) ON w.id = ur.workspace_id AND :id = ur.user_id")
     List<Workspace> findAllByUserRole(@Param("id") Long id);
+
+    @Query(nativeQuery = true, value = "UPDATE workspace SET name = ':name' WHERE id = :id")
+    boolean updateWorkspaceName(@Param("id") Long id, @Param("name") String name);
 }
