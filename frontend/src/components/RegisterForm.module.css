@@ -2,13 +2,7 @@
     width: 80vw;
 }
 
-.validate {
-    display: flex;
-    flex-direction: column;
-    padding: 0;
-    font-size: small;
-    margin: 0px;
-}
+
 
 .para {
     margin: 0%;
@@ -18,14 +12,6 @@
 }
 .para span {
     margin-left: 45px;
-}
-
-.fa-times {
-    opacity: 0;
-}
-
-.fa-check {
-    opacity: 1;
 }
 
 .show_hide {
