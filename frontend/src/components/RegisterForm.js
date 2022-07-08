@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Grid, TextField, makeStyles, FormControl, FormLabel, Select } from '@material-ui/core';
 import validator from 'validator';
+import styles from './RegisterForm.module.css'
 
 const fetchData = async (url) => {
     return fetch(url)
@@ -118,7 +119,7 @@ function RegisterForm(props) {
                         required
                     />
                     <pre>
-                        <input type={show ? "text" : "password"} required placeholder='Password'
+                        <input classname={styles.passwordInput} type={show ? "text" : "password"} required placeholder='Password'
                             onChange={(e) => validate(e.target.value)}></input> <br />
                         {errorMessage === '' ? null :
                             <span style={{
