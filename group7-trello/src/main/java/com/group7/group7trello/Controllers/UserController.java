@@ -147,10 +147,10 @@ public class UserController {
         return login(returnInfo);
     }
 
-    @GetMapping(value = "/forget", consumes = "application/json", produces = "application/json")
-    public Map<String,String>forgetPassword_getTheQuestion(@RequestBody Map<String, String> forgetInfo){
-        Map<String, String>returnMap = new HashMap<>();
-        String email = forgetInfo.get("email");
+    @GetMapping("/forget")
+    @ResponseBody
+    public Map<String,String> forgetPassword_getTheQuestion(@RequestParam String email){
+        Map<String, String> returnMap = new HashMap<>();
         User getUser = userService.getUserByEmail(email);
 
         returnMap.put("question","");

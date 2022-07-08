@@ -1,4 +1,6 @@
 import React, {useRef} from 'react';
+import {Link} from "react-router-dom";
+
 
 function LoginForm(props){
     const emailRef = useRef();
@@ -13,7 +15,6 @@ function LoginForm(props){
 
         //Send the values to server
         props.loginUser(user);
-        console.log(user);
     }
 
     return (
@@ -21,7 +22,9 @@ function LoginForm(props){
             <input type="email" required placeholder="Email" ref={emailRef}/>
             <input type="password" required placeholder="Password" ref={passwordRef}/>
             <button>Submit</button>
-            <button>Forgot Password</button>
+            <p>
+                <Link to={'/forgotPassword'}>Forgot Password?</Link>
+            </p>
         </form>
     );
 }

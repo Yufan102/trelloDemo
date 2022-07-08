@@ -10,6 +10,7 @@ import CreateBoard from "./pages/CreateBoard";
 import DeleteBoard from "./pages/DeleteBoard";
 import DeleteWorkspace from "./pages/DeleteWorkspace";
 import AddMember from "./pages/AddMember";
+import ForgotPassword from "./pages/ForgotPassword";
 
 function App() {
   return (
@@ -24,6 +25,9 @@ function App() {
         </Route>
         <Route path="/home">
           <HomePage />
+        </Route>
+        <Route path="/forgotPassword" exact>
+          <ForgotPassword />
         </Route>
         <Route path={["/workspace/:uuid", "/workspace"]} exact>
           <Workspace />
@@ -46,6 +50,7 @@ function App() {
         <Route path="/addmember/:wsid" exact>
           <AddMember />
         </Route>
+  
       </Switch>
     </div>
   );
