@@ -1,70 +1,75 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Table of Contents
 
-## Available Scripts
+1.  [How to run](#org28b9960)
+2.  [Third party libraries](#org4dad3cb)
+    1.  [Spring](#org0b3ae5d)
+    2.  [React](#org97770c1)
 
-In the project directory, you can run:
 
-### `npm start`
+<a id="org28b9960"></a>
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+# How to run
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+**run**
+git clone <https://git.cs.dal.ca/courses/2022-summer/csci-3130/projects/group07>
 
-### `npm test`
+**run in /group07/frontend**
+npm install
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+**Launch intellij and run maven install then connect to the VPN and launch the spring boot application**
 
-### `npm run build`
+**run in /group7/frontend**
+npm start
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+<a id="org4dad3cb"></a>
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+# Third party libraries
 
-### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+<a id="org0b3ae5d"></a>
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Spring
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+com.fasterxml.jackson.annotation.JsonIgnore
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+org.junit.\*
 
-## Learn More
+org.mockito.\*
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+<a id="org97770c1"></a>
 
-### Code Splitting
+## React
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+@emotion/react
 
-### Analyzing the Bundle Size
+@emotion/styled
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+@material-ui/core
 
-### Making a Progressive Web App
+@mui/material
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+@testing-library/jest-dom
 
-### Advanced Configuration
+@testing-library/react
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+@testing-library/user-event
 
-### Deployment
+dotenv-webpack
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+react
 
-### `npm run build` fails to minify
+react-dom
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+react-router-dom
+
+react-scripts
+
+react-select
+
+validator
+
+web-vitals
+

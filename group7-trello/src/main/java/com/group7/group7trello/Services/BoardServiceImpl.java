@@ -15,9 +15,6 @@ public class BoardServiceImpl implements BoardService {
     @Autowired
     private BoardRepository boardRepository;
 
-    @Autowired
-    private WorkspaceRepository workspaceRepository;
-
     @Override
     public Optional<Board> getByID(Long id) {
         return boardRepository.findById(id);

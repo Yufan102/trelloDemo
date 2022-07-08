@@ -13,9 +13,6 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.mockito.junit.jupiter.MockitoSettings;
 import org.mockito.quality.Strictness;
 import org.springframework.beans.factory.annotation.Autowired;
-
-import java.lang.management.OperatingSystemMXBean;
-import java.security.Provider;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
