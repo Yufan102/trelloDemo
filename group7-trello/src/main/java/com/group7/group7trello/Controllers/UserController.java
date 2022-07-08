@@ -173,17 +173,19 @@ public class UserController {
         String newPassword = forgetInfo.get("new_password");
         User getUser = userService.getUserByEmail(email);
 
-        if(getUser.getSecurity_question().getAnswer().equals(ans) && (email != null && ans != null && newPassword != null)){
+        if(getUser != null) {
+            if (getUser.getSecurity_question().getAnswer().equals(ans) && (email != null && ans != null && newPassword != null)) {
 
-            if(newPassword.equals(getUser.getPassword())){
-                returnMap.put("new_password","same");
-                return returnMap;
+                if (newPassword.equals(getUser.getPassword())) {
+                    returnMap.put("new_password", "same");
+                    return returnMap;
+                }
+                getUser.setPassword(newPassword);
+
+                userService.createUser(getUser);
+
+                returnMap.put("new_password", newPassword);
             }
-            getUser.setPassword(newPassword);
-
-            userService.createUser(getUser);
-
-            returnMap.put("new_password",newPassword);
         }
 
 
