@@ -9,10 +9,10 @@
 - Team Members:
   - (B00844701) | [Yufeng Xu | yf720268@dal.ca](yf720268@dal.ca)
   - (B00837694) | [Yufan Zhou | yufanz@dal.ca](yufanz@dal.ca)
-  - (B00XXXXXX) | [Name | email@dal.ca](email@dal.ca)
-  - (B00XXXXXX) | [Name | email@dal.ca](email@dal.ca)
-  - (B00XXXXXX) | [Name | email@dal.ca](email@dal.ca)
-  - (B00XXXXXX) | [Name | email@dal.ca](email@dal.ca)
+  - (B00881745) | [Rawan Morshed | rw788956@dal.ca](rw788956@dal.ca)
+  - (B00822335) | [Nathan Atkin | nathangatkin@dal.ca](nathangatkin@dal.ca)
+  - (B00755545) | [Anastasia Chapin-Fortin | an540616@dal.ca](an540616@dal.ca)
+  - (B00755545) | [Name | email@dal.ca](email@dal.ca)
 
 # Project
 
