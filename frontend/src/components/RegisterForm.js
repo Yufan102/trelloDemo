@@ -119,7 +119,7 @@ function RegisterForm(props) {
                         required
                     />
                     <pre>
-                        <input classname={styles.passwordInput} type={show ? "text" : "password"} required placeholder='Password'
+                        <input class="input-box-register" type={show ? "text" : "password"} required placeholder='Password'
                             onChange={(e) => validate(e.target.value)}></input> <br />
                         {errorMessage === '' ? null :
                             <span style={{

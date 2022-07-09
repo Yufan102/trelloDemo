@@ -77,3 +77,8 @@ div.input-group > input {
   font-weight: bold;
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
+
+.input-box-register {
+  padding: 17px 140px;
+  border-radius: 5px;
+}
