@@ -31,6 +31,8 @@ function RegisterForm(props) {
     const [show, setShow] = useState(false);
     const [errorMessage, setErrorMessage] = useState('')
 
+    /*validate password citation (Line 36 to 47, Line 125 to 132): URL: https://www.geeksforgeeks.org/how-to-validate-password-is-strong-or-not-in-reactjs/,
+    Date accessed: July 8th, 2022, Content used: how to validate a password */
     const validate = (passwordValue) => {
 
         if (validator.isStrongPassword(passwordValue, {

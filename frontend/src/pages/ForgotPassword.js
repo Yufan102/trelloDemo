@@ -10,6 +10,8 @@ export function EmailVerification({ question, email }) {
     const [show, setShow] = useState(false);
     const [errorMessage, setErrorMessage] = useState('')
 
+    /*validate password citation (Line 15 to 26, Line 75 to 82): URL: https://www.geeksforgeeks.org/how-to-validate-password-is-strong-or-not-in-reactjs/,
+    Date accessed: July 8th, 2022, Content used: how to validate a password */
     const validate = (newpasswordValue) => {
 
         if (validator.isStrongPassword(newpasswordValue, {
