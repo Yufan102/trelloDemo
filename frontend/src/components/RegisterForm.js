@@ -141,7 +141,7 @@ function RegisterForm(props) {
                     </pre>
                 </Grid>
             </Grid>
-            <button>Submit</button>
+            <button class="button-input">Submit</button>
         </form>
     );
 

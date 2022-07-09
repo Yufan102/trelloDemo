@@ -61,50 +61,35 @@ export function EmailVerification({ question, email }) {
     }
 
     return (
-        <form onSubmit={submitHandlerReset}>
-            <Grid container>
-                <Grid item xs={6}>
-                    <p>{question}</p>
-                    <TextField
-                        variant="outlined"
-                        label="Answer"
-                        name="answer"
-                        value={answerValue}
-                        onChange={(e) => setAnswer(e.target.value)}
-                        required
-                    />
-                    {/* <TextField
-                        variant="outlined"
-                        label="New Password"
-                        name="new_password"
-                        value={newpasswordValue}
-                        onChange={(e) => setNewPassword(e.target.value)}
-                        required
-                    /> */}
-                    <pre>
-                        <input type={show ? "text" : "password"} required placeholder='New Password'
-                            onChange={(e) => validate(e.target.value)}></input> <br />
-                        {errorMessage === '' ? null :
-                            <span style={{
-                                fontWeight: 'bold',
-                                color: 'FireBrick',
-                                fontFamily: 'sans-serif',
-                                fontSize: 'medium'
-                            }}>{errorMessage}</span>}
-                        <h4>Password requirements:</h4>
-                        <p>
-                            <ul>
-                                <li>Minimum length of 8 characters</li>
-                                <li>At least 1 uppercase character</li>
-                                <li>At least 1 lowercase character</li>
-                                <li>At least 1 number</li>
-                                <li>At least 1 special character</li>
-                            </ul>
-                        </p>
-                    </pre>
-                </Grid>
-            </Grid>
-            <button>Submit</button>
+        <form onSubmit={submitHandlerReset} class="formBody">
+            <p class="smaller-headers">{question}</p>
+            <div class="input-group">
+                <label for="answer-input">Answer:</label>
+                <input class="input-box" type="text" required placeholder="Answer" onChange={(e) => setAnswer(e.target.value)} />
+            </div>
+            <div class="input-group">
+                <label for="password-input">New Password:</label>
+                <input class="input-box" type={show ? "text" : "password"} required placeholder='New Password'
+                    onChange={(e) => validate(e.target.value)}></input> <br />
+                {errorMessage === '' ? null :
+                    <span style={{
+                        fontWeight: 'bold',
+                        color: 'FireBrick',
+                        fontFamily: 'sans-serif',
+                        fontSize: 'medium'
+                    }}>{errorMessage}</span>}
+                <p>
+                    <h4>Password requirements:</h4>
+                    <ul>
+                        <li>Minimum length of 8 characters</li>
+                        <li>At least 1 uppercase character</li>
+                        <li>At least 1 lowercase character</li>
+                        <li>At least 1 number</li>
+                        <li>At least 1 special character</li>
+                    </ul>
+                </p>
+            </div>
+            <button class="button-input">Submit</button>
         </form>
     )
 }
@@ -146,7 +131,7 @@ function ForgotPassword() {
 
     return (
         <div>
-            <h1>Enter Email to Reset Password</h1>
+            <h1 class="headers">Enter Email to Reset Password</h1>
             <ForgotForm resetPassword={resetPasswordHandler} />
             {showEmailPlaceholder ? <EmailVerification question={question} email={email}></EmailVerification> : <></>}
         </div>
