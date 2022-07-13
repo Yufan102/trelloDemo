@@ -44,4 +44,84 @@ public class Ticket {
 
     @Column(nullable=true, unique=false)
     private Date deadline;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public User getAssign_user_id() {
+        return assign_user_id;
+    }
+
+    public void setAssign_user_id(User assign_user_id) {
+        this.assign_user_id = assign_user_id;
+    }
+
+    public Lists getList_id() {
+        return list_id;
+    }
+
+    public void setList_id(Lists list_id) {
+        this.list_id = list_id;
+    }
+
+    public Sprint getSprint_id() {
+        return sprint_id;
+    }
+
+    public void setSprint_id(Sprint sprint_id) {
+        this.sprint_id = sprint_id;
+    }
+
+    public User getReport_to_id() {
+        return report_to_id;
+    }
+
+    public void setReport_to_id(User report_to_id) {
+        this.report_to_id = report_to_id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Set<TicketLabels> getTicketLabels() {
+        return ticketLabels;
+    }
+
+    public void setTicketLabels(Set<TicketLabels> ticketLabels) {
+        this.ticketLabels = ticketLabels;
+    }
+
+    public int getStory_points() {
+        return story_points;
+    }
+
+    public void setStory_points(int story_points) {
+        this.story_points = story_points;
+    }
+
+    public Date getCreated_on() {
+        return created_on;
+    }
+
+    public void setCreated_on(Date created_on) {
+        this.created_on = created_on;
+    }
+
+    public Date getDeadline() {
+        return deadline;
+    }
+
+    public void setDeadline(Date deadline) {
+        this.deadline = deadline;
+    }
 }
