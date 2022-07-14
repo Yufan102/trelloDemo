@@ -99,11 +99,18 @@ public class TicketController {
 
             Date date = getTicket.getCreated_on();
             DateFormat df = new SimpleDateFormat("yyyy/MM/dd");
-            String text = df.format(date);
+            String createdOn = df.format(date);
+            String DDL = "";
+
+            if(getTicket.getDeadline() != null){
+                Date ddl = getTicket.getDeadline();
+                DDL = df.format(ddl);
+            }
 
             map.put("assign_id", getTicket.getAssign_user_id().getId());
             map.put("report_id", getTicket.getReport_to_id().getId());
-            map.put("created_on", text);
+            map.put("created_on", createdOn);
+            map.put("deadline", DDL);
 
             return map;
         }
