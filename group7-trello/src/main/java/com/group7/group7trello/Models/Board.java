@@ -15,7 +15,7 @@ public class Board {
     private String name;
 
     @JsonIgnore
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne()
     @JoinColumn(name = "workspace_id")
     private Workspace workspace;
 

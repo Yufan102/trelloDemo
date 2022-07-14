@@ -1,5 +1,7 @@
 package com.group7.group7trello.Models;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
 import java.util.*;
@@ -32,9 +34,11 @@ public class User {
     private Set<UserRole> user_roles = new HashSet<>();
 
     @OneToMany(mappedBy = "assign_user_id")
+    @JsonBackReference
     private Set<Ticket> report_tickets = new HashSet<>();
 
     @OneToMany(mappedBy = "report_to_id")
+    @JsonBackReference
     private Set<Ticket> assign_tickets = new HashSet<>();
 
 
