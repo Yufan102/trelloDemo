@@ -1,15 +1,15 @@
 package com.group7.group7trello.Controllers;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.group7.group7trello.Models.Ticket;
-import com.group7.group7trello.Models.TicketLabels;
 import com.group7.group7trello.Models.User;
 import com.group7.group7trello.Services.TicketService;
 import com.group7.group7trello.Services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 @RestController
@@ -84,5 +84,30 @@ public class TicketController {
         }
 
         return new Ticket();
+    }
+
+    @GetMapping(value = "display/{id}")
+    public Map<String,Object> displayTicketWithDetails(@PathVariable Long id){
+        ObjectMapper objectMapper = new ObjectMapper();
+
+        Optional<Ticket> ticketOptional = ticketService.getByID(id);
+
+        if(ticketOptional.isPresent()){
+            Ticket getTicket = ticketOptional.get();
+
+            Map<String, Object> map = objectMapper.convertValue(getTicket, Map.class);
+
+            Date date = getTicket.getCreated_on();
+            DateFormat df = new SimpleDateFormat("yyyy/MM/dd");
+            String text = df.format(date);
+
+            map.put("assign_id", getTicket.getAssign_user_id().getId());
+            map.put("report_id", getTicket.getReport_to_id().getId());
+            map.put("created_on", text);
+
+            return map;
+        }
+
+        return new HashMap<>();
     }
 }
