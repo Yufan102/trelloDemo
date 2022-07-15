@@ -4,6 +4,7 @@ import com.group7.group7trello.Models.Board;
 import com.group7.group7trello.Models.Workspace;
 import com.group7.group7trello.Repositories.BoardRepository;
 import com.group7.group7trello.Services.BoardService;
+import com.group7.group7trello.Services.ListsService;
 import com.group7.group7trello.Services.WorkspaceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,7 +23,7 @@ public class BoardController {
     private WorkspaceService workspaceService;
 
     @Autowired
-    private BoardRepository boardRepository;
+    private ListsService listsService;
 
     @GetMapping(value = "/getAll")
     public List<Board> getAllBoards(){
@@ -34,7 +35,9 @@ public class BoardController {
 
     @PostMapping(value = "/add")
     public Board add(Board board){
-        return boardService.add(board);
+        Board b = boardService.add(board);
+        listsService.initialize(b);
+        return b;
     }
 
     @DeleteMapping("/delete")

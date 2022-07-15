@@ -23,5 +23,11 @@ public class Lists {
 
     @OneToMany(mappedBy = "list_id")
     private Set<Ticket> tickets = new HashSet<>();
+
+    public Lists(String name, int list_ordering, Board board) {
+        this.name = name;
+        this.list_ordering = list_ordering;
+        this.board = board;
+    }
 }
 
