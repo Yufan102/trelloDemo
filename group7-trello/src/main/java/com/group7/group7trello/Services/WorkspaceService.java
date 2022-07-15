@@ -1,5 +1,6 @@
 package com.group7.group7trello.Services;
 
+import com.group7.group7trello.Models.User;
 import com.group7.group7trello.Models.Workspace;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,4 +21,6 @@ public interface WorkspaceService {
     public List<Workspace> findAll();
 
     public List<Workspace> findAllByUserRole();
+
+    public List<User> findUsersByWorkSpaceId(Long id);
 }

@@ -1,5 +1,6 @@
 package com.group7.group7trello.Controllers;
 
+import com.group7.group7trello.Models.User;
 import com.group7.group7trello.Models.UserRole;
 import com.group7.group7trello.Models.Workspace;
 import com.group7.group7trello.Services.BoardService;
@@ -47,4 +48,7 @@ public class WorkspaceController {
     public UserRole addUserToWorkspace(UserRole ur){
         return userRoleService.createUserRole(ur);
     }
+
+    @GetMapping(value = "/getUsers/{id}")
+    public List<User> getUsers(@PathVariable("id") Long id) { return workspaceService.findUsersByWorkSpaceId(id); }
 }
