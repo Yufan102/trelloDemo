@@ -29,5 +29,9 @@ public class Lists {
         this.list_ordering = list_ordering;
         this.board = board;
     }
+
+    public Lists() {
+
+    }
 }
 

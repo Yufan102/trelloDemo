@@ -2,6 +2,8 @@ package com.group7.group7trello.Models;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import org.hibernate.annotations.CreationTimestamp;
+import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
 import java.util.*;
@@ -41,6 +43,7 @@ public class Ticket {
     @Column(length=50, nullable=true, unique=false)
     private int story_points;
 
+    @CreationTimestamp
     @Column(nullable=false, unique=false)
     private Date created_on;
 
