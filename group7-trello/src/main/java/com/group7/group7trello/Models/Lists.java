@@ -33,5 +33,37 @@ public class Lists {
     public Lists() {
 
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getList_ordering() {
+        return list_ordering;
+    }
+
+    public void setList_ordering(int list_ordering) {
+        this.list_ordering = list_ordering;
+    }
+
+    public Board getBoard() {
+        return board;
+    }
+
+    public void setBoard(Board board) {
+        this.board = board;
+    }
+
+    public Set<Ticket> getTickets() {
+        return tickets;
+    }
+
+    public void setTickets(Set<Ticket> tickets) {
+        this.tickets = tickets;
+    }
 }
 
