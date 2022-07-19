@@ -18,4 +18,6 @@ public interface TicketService {
 
     public Optional<Ticket>getByID(Long id);
 
+    public Optional<Ticket> addTicketToList(String name, Long board_id, Long ticket_id);
+
 }

@@ -33,7 +33,7 @@ public class TicketController {
     }
 
     @PostMapping(value = "/create", produces = "application/json")
-    public Ticket create(Ticket ticket) { return ticketService.create(ticket); }
+    public Ticket create(Ticket ticket) { return ticketService.create(ticket);}
 
     @PostMapping(value = "/assign/{ticketID}/{userID}")
     public Ticket assignTicket(@PathVariable("ticketID") Long ticketID, @PathVariable("userID") Long userID){
@@ -82,4 +82,10 @@ public class TicketController {
 
         return new HashMap<>();
     }
+
+    @PostMapping(value = "/addTo/{name}/{board_id}/{ticket_id}")
+    public Optional<Ticket> getByID(@PathVariable("name") String name, @PathVariable("board_id") Long board_id, @PathVariable("ticket_id") Long ticket_id){
+        return ticketService.addTicketToList(name, board_id, ticket_id);
+    }
+
 }
