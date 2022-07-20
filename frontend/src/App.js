@@ -11,6 +11,9 @@ import DeleteBoard from "./pages/DeleteBoard";
 import DeleteWorkspace from "./pages/DeleteWorkspace";
 import AddMember from "./pages/AddMember";
 import ForgotPassword from "./pages/ForgotPassword";
+import ViewCards from "./components/ViewCards";
+import Cards from "./pages/Cards";
+import CreateCard from "./pages/CreateCard";
 
 function App() {
   return (
@@ -50,7 +53,12 @@ function App() {
         <Route path="/addmember/:wsid" exact>
           <AddMember />
         </Route>
-  
+        <Route path="/cards/:wsid" exact>
+          <Cards />
+        </Route>
+        <Route path="/createcard/:wsid" exact>
+          <CreateCard />
+        </Route>
       </Switch>
     </div>
   );

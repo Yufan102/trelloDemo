@@ -16,6 +16,9 @@ function ViewBoards(props) {
                                     <Typography component='h4' variant='h4'>
                                         {board.name}
                                     </Typography>
+                                    <Link to={'/cards/'+board.id}><Typography component='button' variant='button'>
+                                        View Tasks
+                                    </Typography></Link>
                                     <Link to={'/deleteboard/'+board.id}><Typography component='button' variant='button'>
                                         Delete
                                     </Typography></Link>
