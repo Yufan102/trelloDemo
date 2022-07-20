@@ -12,7 +12,7 @@ import java.util.Optional;
 @Repository
 public interface ListsRepository extends JpaRepository<Lists, Long>  {
 
-    @Query(nativeQuery = true, value = "SELECT * FROM lists WHERE name = 'todo' AND board_id = 70 LIMIT 1")
+    @Query(nativeQuery = true, value = "SELECT * FROM lists WHERE name = :name AND board_id = :id LIMIT 1;")
     Optional<Lists> findByListNameAndBoardID(@Param("name") String name, @Param("id") Long id);
 
 }
