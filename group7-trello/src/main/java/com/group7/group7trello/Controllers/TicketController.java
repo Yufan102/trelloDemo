@@ -13,6 +13,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
+@CrossOrigin("*")
 @RestController
 @RequestMapping("/api/ticket")
 public class TicketController {
