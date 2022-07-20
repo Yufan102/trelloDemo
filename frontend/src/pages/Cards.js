@@ -1,8 +1,8 @@
 
-import ViewCards from '../components/ViewCards';
 import React, { useEffect, useState } from 'react';
 import { TextField, Grid, Card, Container } from '@mui/material';
 import { Link, useParams } from 'react-router-dom';
+import ViewCards from '../components/ViewCards';
 
 function Cards() {
 
@@ -16,8 +16,7 @@ function Cards() {
             headers: {
                 'Authorization': 'Bearer ' + window.localStorage.getItem('uuid')
             }
-        })
-            .then(response => response.json)
+        }).then(response => response.json())
             .then(cards => {
                 setCardsData(cards);
             });
