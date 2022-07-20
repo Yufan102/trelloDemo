@@ -21,7 +21,7 @@ public class Lists {
     @JoinColumn(name = "board_id")
     private Board board;
 
-    @OneToMany(mappedBy = "list_id")
+    @OneToMany(mappedBy = "list_id", cascade = CascadeType.REMOVE, orphanRemoval = true)
     private Set<Ticket> tickets = new HashSet<>();
 
     public Lists(String name, int list_ordering, Board board) {

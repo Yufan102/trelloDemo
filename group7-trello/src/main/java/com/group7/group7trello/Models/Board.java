@@ -19,7 +19,7 @@ public class Board {
     @JoinColumn(name = "workspace_id")
     private Workspace workspace;
 
-    @OneToMany(mappedBy = "board")
+    @OneToMany(mappedBy = "board", cascade = CascadeType.REMOVE, orphanRemoval = true)
     private Set<Lists> Lists = new HashSet<>();
     public Long getId() {
         return id;
