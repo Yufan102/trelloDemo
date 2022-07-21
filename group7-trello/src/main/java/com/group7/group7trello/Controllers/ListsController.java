@@ -6,6 +6,7 @@ import com.group7.group7trello.Services.ListsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -20,6 +21,14 @@ public class ListsController {
 
     @GetMapping(value = "/get/{name}/{id}")
     public Set<Ticket> getByID(@PathVariable("name") String name, @PathVariable("id") Long id){
-        return listsService.getByListNameAndBoardID(name, id).get().getTickets();
+        Optional<Lists> listOfTickets = listsService.getByListNameAndBoardID(name, id);
+
+        if(listOfTickets.isPresent()) {
+            return listOfTickets.get().getTickets();
+        } else {
+            return Collections.emptySet();
+        }
+
     }
+
 }
