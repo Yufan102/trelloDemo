@@ -4,12 +4,9 @@ import { Link, useParams } from 'react-router-dom';
 
 function ViewCards(props) {
 
-    window.localStorage.getItem('wsid');
-    window.localStorage.getItem('bdid');
-    console.log(window.localStorage.getItem('wsid'));
-    console.log(window.localStorage.getItem('bdid'));
-
     const [searchTerm, setSearchTerm] = useState('');
+    const [statusData, setStatusData] = useState('');
+    const url = process.env.REACT_APP_URL;
 
     function formatDate(value) {
         var d = new Date(value),
@@ -75,18 +72,16 @@ function ViewCards(props) {
         return status;
     }
 
-    function setToDo() {
-        document.getElementById('status').innerHTML = 'ToDo';
-
+    function setStatus(id, status) {
+        setStatusData(status);
+        fetch(url + '/ticket/addTo/' + status + '/' + window.localStorage.getItem('wsid') + '/' + id, {
+            method: 'POST',
+            headers: {
+                'Authorization': 'Bearer ' + window.localStorage.getItem('uuid')
+            }
+        })
     }
-
-    function setDoing() {
-        document.getElementById('status').innerHTML = 'Doing';
-    }
-
-    function setDone() {
-        document.getElementById('status').innerHTML = 'Done';
-    }
+    
 
     return (
 
@@ -109,7 +104,6 @@ function ViewCards(props) {
                             return value;
                         }
                     })
-
                         .map(card => (
                             <Grid item xs='12' sm='12' md='4' lg='3' key={card.id}>
                                 <Card elevation='6'>
@@ -118,27 +112,38 @@ function ViewCards(props) {
                                             {card.name}
                                         </Typography>
                                         <Typography component='p' variant='p'>
+                                            {card.assign_user_id != null &&
+                                                'Assignee: ' + card.assign_user_id.first_name + ' ' + card.assign_user_id.last_name
+                                            }
+                                        </Typography>
+                                        <Typography component='p' variant='p'>
                                             {formatDate(card.deadline)}
                                         </Typography>
                                         <Typography>
                                             {dueStatus(card.deadline)}
                                         </Typography>
+                                        <Typography component='p' variant='p'>
+                                            {statusData}
+                                        </Typography>
                                         <Typography>
-                                                <Button id="todo">
-                                                    ToDo
+                                            {statusData != 'ToDo' && 
+                                                <Button id="todo" onClick={e => setStatus(card.id, e.target.id)}>
+                                                ToDo
                                                 </Button>
-                                                <Button id="doing">
-                                                    Doing
+                                            }
+                                            {statusData != 'Doing' &&
+                                                <Button id="doing" onClick={e => setStatus(card.id, e.target.id)}>
+                                                 Doing
                                                 </Button>
-                                                <Button id="done">
-                                                    Done
+                                            }
+                                            {statusData != 'Done' &&
+                                                <Button id="done" onClick={e => setStatus(card.id, e.target.id)}>
+                                                Done
                                                 </Button>
-                                                
-                                                <p id="status">Status</p>
-
-                                                <Link to={'/addcardmember/'+ window.localStorage.getItem('bdid') + '/' + window.localStorage.getItem('wsid') + '/' + card.id}><Typography component='button' variant='button'>
-                                                    Assign member by email
-                                                </Typography></Link>
+                                            }
+                                            <Link to={'/addcardmember/'+ window.localStorage.getItem('bdid') + '/' + window.localStorage.getItem('wsid') + '/' + card.id}><Typography component='button' variant='button'>
+                                                Assign member by email
+                                            </Typography></Link>
 
                                         </Typography>
 
@@ -154,12 +159,3 @@ function ViewCards(props) {
 };
 
 export default ViewCards;
-
-/*
-        fetch(url + '/addTo/' + document.getElementById('status').innerHTML + '/' + window.localStorage.getItem('wsid') + '/' + id, {
-            method: 'POST',
-            headers: {
-                'Authorization': 'Bearer ' + window.localStorage.getItem('uuid')
-            }
-        }).then(() => history.replace('/cards/' + window.localStorage.getItem('bdid') +'/' + window.localStorage.getItem('wsid')));
-*/
