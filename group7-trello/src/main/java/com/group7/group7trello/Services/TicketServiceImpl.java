@@ -55,6 +55,8 @@ public class TicketServiceImpl implements TicketService{
         Optional<Ticket> movingTicket = ticketRepository.findById(ticket_id);
         movingTicket.get().setList_id(list);
 
+        ticketRepository.save(movingTicket.get());
+
         return movingTicket;
     }
 

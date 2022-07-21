@@ -34,7 +34,7 @@ public class Ticket {
     @JsonManagedReference
     private User report_to_id;
 
-    @Column(length=50, nullable=false, unique=true)
+    @Column(length=50, nullable=false, unique=false)
     private String name;
 
     @OneToMany(mappedBy = "ticket")

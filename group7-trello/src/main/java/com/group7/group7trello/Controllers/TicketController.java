@@ -33,8 +33,20 @@ public class TicketController {
         return ticketService.getByID(id);
     }
 
-    @PostMapping(value = "/create", produces = "application/json")
-    public Ticket create(Ticket ticket) { return ticketService.create(ticket);}
+    @PostMapping(value = "/create/{board_id}/{email}/", produces = "application/json")
+    public Ticket createTicketWithUser(@PathVariable("email") String email, @PathVariable("board_id") Long board_id, Ticket ticket) {
+        Ticket newTicket = ticketService.create(ticket);
+        ticketService.addTicketToList("todo", board_id, newTicket.getId());
+        newTicket.setAssign_user_id(userService.getUserByEmail(email));
+        return newTicket;
+    }
+
+    @PostMapping(value = "/create/{board_id}/", produces = "application/json")
+    public Ticket createTicket(@PathVariable("board_id") Long board_id, Ticket ticket) {
+        Ticket newTicket = ticketService.create(ticket);
+        ticketService.addTicketToList("todo", board_id, newTicket.getId());
+        return newTicket;
+    }
 
     @PostMapping(value = "/assign/{ticketID}/{userID}")
     public Ticket assignTicket(@PathVariable("ticketID") Long ticketID, @PathVariable("userID") Long userID){
@@ -85,7 +97,7 @@ public class TicketController {
     }
 
     @PostMapping(value = "/addTo/{name}/{board_id}/{ticket_id}")
-    public Optional<Ticket> getByID(@PathVariable("name") String name, @PathVariable("board_id") Long board_id, @PathVariable("ticket_id") Long ticket_id){
+    public Optional<Ticket> addTo(@PathVariable("name") String name, @PathVariable("board_id") Long board_id, @PathVariable("ticket_id") Long ticket_id){
         return ticketService.addTicketToList(name, board_id, ticket_id);
     }
 

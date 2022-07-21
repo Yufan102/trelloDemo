@@ -8,7 +8,7 @@ function CreateCard() {
     const history = useHistory();
 
     function createCardHandler(cardName, cardDue) {
-        fetch(url + '/ticket/create?name=' + cardName + '&deadline=' + cardDue, {
+        fetch(url + '/ticket/create/' + window.localStorage.getItem('wsid') + '/?name=' + cardName + '&deadline=' + cardDue, {
             method: 'POST',
             headers: {
                 'Authorization': 'Bearer ' + window.localStorage.getItem('uuid')
