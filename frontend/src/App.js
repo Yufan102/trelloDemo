@@ -53,10 +53,10 @@ function App() {
         <Route path="/addmember/:wsid" exact>
           <AddMember />
         </Route>
-        <Route path="/cards/:wsid" exact>
+        <Route path="/cards/:bdid/:wsid" exact>
           <Cards />
         </Route>
-        <Route path="/createcard/:wsid" exact>
+        <Route path="/createcard/:bdid/:wsid" exact>
           <CreateCard />
         </Route>
       </Switch>

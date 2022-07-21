@@ -13,7 +13,7 @@ function CreateCard() {
             headers: {
                 'Authorization': 'Bearer ' + window.localStorage.getItem('uuid')
             }
-        }).then(() => history.replace('/cards/' + window.localStorage.getItem('wsid')));
+        }).then(() => history.replace('/cards/' + window.localStorage.getItem('bdid') +'/' + window.localStorage.getItem('wsid')));
     }
 
     return (

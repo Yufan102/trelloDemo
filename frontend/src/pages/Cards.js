@@ -10,6 +10,7 @@ function Cards() {
 
     const url = process.env.REACT_APP_URL;
     window.localStorage.setItem('wsid', useParams().wsid);
+    window.localStorage.setItem('bdid', useParams().bdid);
 
     function getAllCards() {
         fetch(url + '/lists/get/todo/' + window.localStorage.getItem('wsid'),{
@@ -30,8 +31,8 @@ function Cards() {
     return (
         <>
 
-        <Link to={'/createcard/' + window.localStorage.getItem('wsid')}>Create a new card</Link><br></br>
-        <Link to={'/boards/' + window.localStorage.getItem('wsid')}>Back to boards</Link>
+        <Link to={'/createcard/' + window.localStorage.getItem('bdid') + '/' + window.localStorage.getItem('wsid')}>Create a new card</Link><br></br>
+        <Link to={'/boards/' + window.localStorage.getItem('bdid')}>Back to boards</Link>
 
             <section>
                 <ViewCards cards={cardsData}/>
