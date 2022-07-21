@@ -1,8 +1,6 @@
 package com.group7.group7trello.Security;
 
-import com.group7.group7trello.Models.Authorization;
 import com.group7.group7trello.Services.AuthorizationService;
-import com.group7.group7trello.Services.AuthorizationServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
@@ -18,7 +16,11 @@ import java.util.UUID;
 public class TokenService implements AuthenticationProviders {
 
     @Autowired
-    AuthorizationService authorizationService;
+    private AuthorizationService authorizationService;
+
+    private static String AUTHENTICATE_HEADER_STRING = "Authorization";
+
+    private static int hoursUntilExpiration = 12;
 
     @Override
     public Authentication getAuthentication(HttpServletRequest request) {
@@ -37,5 +39,9 @@ public class TokenService implements AuthenticationProviders {
 
     public String generateToken() {
         return UUID.randomUUID().toString();
+    }
+
+    public int getHoursUntilExpiration(){
+        return hoursUntilExpiration;
     }
 }

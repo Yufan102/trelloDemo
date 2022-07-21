@@ -17,12 +17,20 @@ public class SecurityConfiguration {
     @Autowired
     private TokenService tokenService;
 
+    String[] publicApiCalls = new String[] {
+            "/api/user/login",
+            "/api/user/signup",
+            "/api/user/forget",
+            "/api/user/forget/reset",
+            "/api/question/getAll"
+    };
+
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.cors().and()
                 .csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/api/user/login", "/api/user/signup","/api/user/forget","/api/user/forget/reset","/api/question/getAll").permitAll()
+                .antMatchers(publicApiCalls).permitAll()
                 .anyRequest().authenticated().and()
                 .apply(new HttpConfigurer(tokenService)).and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
