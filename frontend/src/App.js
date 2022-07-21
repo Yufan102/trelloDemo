@@ -14,6 +14,7 @@ import ForgotPassword from "./pages/ForgotPassword";
 import ViewCards from "./components/ViewCards";
 import Cards from "./pages/Cards";
 import CreateCard from "./pages/CreateCard";
+import AddCardMember from "./pages/AddCardMember";
 
 function App() {
   return (
@@ -58,6 +59,9 @@ function App() {
         </Route>
         <Route path="/createcard/:bdid/:wsid" exact>
           <CreateCard />
+        </Route>
+        <Route path="/addcardmember/:bdid/:wsid/:tsid" exact>
+          <AddCardMember />
         </Route>
       </Switch>
     </div>

@@ -1,7 +1,13 @@
 import React, { useState } from 'react';
 import { ButtonGroup, TextField, Grid, Card, CardContent, Typography, Button, Container } from '@mui/material';
+import { Link, useParams } from 'react-router-dom';
 
 function ViewCards(props) {
+
+    window.localStorage.getItem('wsid');
+    window.localStorage.getItem('bdid');
+    console.log(window.localStorage.getItem('wsid'));
+    console.log(window.localStorage.getItem('bdid'));
 
     const [searchTerm, setSearchTerm] = useState('');
 
@@ -130,9 +136,9 @@ function ViewCards(props) {
                                                 
                                                 <p id="status">Status</p>
 
-                                                <Button id="member">
-                                                    Add Member
-                                                </Button>
+                                                <Link to={'/addcardmember/'+ window.localStorage.getItem('bdid') + '/' + window.localStorage.getItem('wsid') + '/' + card.id}><Typography component='button' variant='button'>
+                                                    Assign member by email
+                                                </Typography></Link>
 
                                         </Typography>
 
