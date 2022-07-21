@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { TextField, Grid, Card, CardContent, Typography, Button, Container } from '@mui/material';
+import { ButtonGroup, TextField, Grid, Card, CardContent, Typography, Button, Container } from '@mui/material';
 
 function ViewCards(props) {
 
@@ -69,6 +69,19 @@ function ViewCards(props) {
         return status;
     }
 
+    function setToDo() {
+        document.getElementById('status').innerHTML = 'ToDo';
+
+    }
+
+    function setDoing() {
+        document.getElementById('status').innerHTML = 'Doing';
+    }
+
+    function setDone() {
+        document.getElementById('status').innerHTML = 'Done';
+    }
+
     return (
 
         <section style={{ marginTop: '32px' }}>
@@ -104,6 +117,25 @@ function ViewCards(props) {
                                         <Typography>
                                             {dueStatus(card.deadline)}
                                         </Typography>
+                                        <Typography>
+                                                <Button id="todo">
+                                                    ToDo
+                                                </Button>
+                                                <Button id="doing">
+                                                    Doing
+                                                </Button>
+                                                <Button id="done">
+                                                    Done
+                                                </Button>
+                                                
+                                                <p id="status">Status</p>
+
+                                                <Button id="member">
+                                                    Add Member
+                                                </Button>
+
+                                        </Typography>
+
                                     </CardContent>
                                 </Card>
                             </Grid>
@@ -116,3 +148,12 @@ function ViewCards(props) {
 };
 
 export default ViewCards;
+
+/*
+        fetch(url + '/addTo/' + document.getElementById('status').innerHTML + '/' + window.localStorage.getItem('wsid') + '/' + id, {
+            method: 'POST',
+            headers: {
+                'Authorization': 'Bearer ' + window.localStorage.getItem('uuid')
+            }
+        }).then(() => history.replace('/cards/' + window.localStorage.getItem('bdid') +'/' + window.localStorage.getItem('wsid')));
+*/
