@@ -88,7 +88,7 @@ public class UserController {
 
         Calendar c = Calendar.getInstance();
         c.setTime(new Date());
-        c.add(Calendar.HOUR_OF_DAY, 12);
+        c.add(Calendar.HOUR_OF_DAY, tokenService.getHoursUntilExpiration());
 
         Authorization a = new Authorization();
         a.setUser(u);
@@ -173,21 +173,27 @@ public class UserController {
         String newPassword = forgetInfo.get("new_password");
         User getUser = userService.getUserByEmail(email);
 
-        if(getUser != null) {
-            if (getUser.getSecurity_question().getAnswer().equals(ans) && (email != null && ans != null && newPassword != null)) {
-
-                if (newPassword.equals(getUser.getPassword())) {
-                    returnMap.put("new_password", "same");
-                    return returnMap;
-                }
-                getUser.setPassword(newPassword);
-
-                userService.createUser(getUser);
-
-                returnMap.put("new_password", newPassword);
-            }
+        if (getUser == null) {
+            returnMap.put("error", "user null");
+            return returnMap;
         }
 
+        if (ans == null || newPassword == null) {
+            returnMap.put("error", "null input");
+            return returnMap;
+        }
+
+        if (getUser.getSecurity_question().getAnswer().equals(ans)) {
+            if (newPassword.equals(getUser.getPassword())) {
+                returnMap.put("new_password", "same");
+                return returnMap;
+            }
+            getUser.setPassword(newPassword);
+
+            userService.createUser(getUser);
+
+            returnMap.put("new_password", newPassword);
+        }
 
         return returnMap;
     }

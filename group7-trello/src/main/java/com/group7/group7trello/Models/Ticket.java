@@ -74,20 +74,9 @@ public class Ticket {
         this.list_id = list_id;
     }
 
-    public Sprint getSprint_id() {
-        return sprint_id;
-    }
-
-    public void setSprint_id(Sprint sprint_id) {
-        this.sprint_id = sprint_id;
-    }
 
     public User getReport_to_id() {
         return report_to_id;
-    }
-
-    public void setReport_to_id(User report_to_id) {
-        this.report_to_id = report_to_id;
     }
 
     public String getName() {
@@ -98,21 +87,6 @@ public class Ticket {
         this.name = name;
     }
 
-    public Set<TicketLabels> getTicketLabels() {
-        return ticketLabels;
-    }
-
-    public void setTicketLabels(Set<TicketLabels> ticketLabels) {
-        this.ticketLabels = ticketLabels;
-    }
-
-    public int getStory_points() {
-        return story_points;
-    }
-
-    public void setStory_points(int story_points) {
-        this.story_points = story_points;
-    }
 
     public Date getCreated_on() {
         return created_on;

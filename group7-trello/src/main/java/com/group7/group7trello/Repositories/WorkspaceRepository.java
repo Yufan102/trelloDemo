@@ -16,6 +16,4 @@ public interface WorkspaceRepository extends JpaRepository<Workspace, Long> {
 
     @Query(nativeQuery = true, value = "UPDATE workspace SET name = ':name' WHERE id = :id")
     boolean updateWorkspaceName(@Param("id") Long id, @Param("name") String name);
-
-
 }
