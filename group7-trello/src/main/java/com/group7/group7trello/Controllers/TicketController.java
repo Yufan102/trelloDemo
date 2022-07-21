@@ -64,6 +64,22 @@ public class TicketController {
         return new Ticket();
     }
 
+    @PostMapping(value = "/assign/email/{ticketID}/{userEmail}")
+    public Ticket assignTicket(@PathVariable("ticketID") Long ticketID, @PathVariable("userEmail") String userEmail){
+        User user = userService.getUserByEmail(userEmail);
+        Optional<Ticket>ticket = ticketService.getByID(ticketID);
+
+        if(user != null && ticket.isPresent()){
+            Ticket changingTicket = ticket.get();
+
+            changingTicket.setAssign_user_id(user);
+
+            return ticketService.create(changingTicket);
+        }
+
+        return new Ticket();
+    }
+
     @GetMapping(value = "display/{id}")
     public Map<String,Object> displayTicketWithDetails(@PathVariable Long id){
         ObjectMapper objectMapper = new ObjectMapper();
