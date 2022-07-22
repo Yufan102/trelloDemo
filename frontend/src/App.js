@@ -15,6 +15,8 @@ import ViewCards from "./components/ViewCards";
 import Cards from "./pages/Cards";
 import CreateCard from "./pages/CreateCard";
 import AddCardMember from "./pages/AddCardMember";
+import ProtectedRoute from "./pages/ProtectedRoute";
+
 
 function App() {
   return (
@@ -33,36 +35,36 @@ function App() {
         <Route path="/forgotPassword" exact>
           <ForgotPassword />
         </Route>
-        <Route path={["/workspace/:uuid", "/workspace"]} exact>
+        <ProtectedRoute path={["/workspace/:uuid", "/workspace"]} exact>
           <Workspace />
-        </Route>
-        <Route path="/createworkspace" exact>
+        </ProtectedRoute>
+        <ProtectedRoute path="/createworkspace" exact>
           <CreateWorkspace />
-        </Route>
-        <Route path="/boards/:wsid" exact>
+        </ProtectedRoute>
+        <ProtectedRoute path="/boards/:wsid" exact>
           <Boards />
-        </Route>
-        <Route path="/createboard" exact>
+        </ProtectedRoute>
+        <ProtectedRoute path="/createboard" exact>
           <CreateBoard />
-        </Route>
-        <Route path="/deleteboard/:bdid" exact>
+        </ProtectedRoute>
+        <ProtectedRoute path="/deleteboard/:bdid" exact>
           <DeleteBoard />
-        </Route>
-        <Route path="/deleteworkspace/:wsid" exact>
+        </ProtectedRoute>
+        <ProtectedRoute path="/deleteworkspace/:wsid" exact>
           <DeleteWorkspace />
-        </Route>
-        <Route path="/addmember/:wsid" exact>
+        </ProtectedRoute>
+        <ProtectedRoute path="/addmember/:wsid" exact>
           <AddMember />
-        </Route>
-        <Route path="/cards/:bdid/:wsid" exact>
+        </ProtectedRoute>
+        <ProtectedRoute path="/cards/:bdid/:wsid" exact>
           <Cards />
-        </Route>
-        <Route path="/createcard/:bdid/:wsid" exact>
+        </ProtectedRoute>
+        <ProtectedRoute path="/createcard/:bdid/:wsid" exact>
           <CreateCard />
-        </Route>
-        <Route path="/addcardmember/:bdid/:wsid/:tsid" exact>
+        </ProtectedRoute>
+        <ProtectedRoute path="/addcardmember/:bdid/:wsid/:tsid" exact>
           <AddCardMember />
-        </Route>
+        </ProtectedRoute>
       </Switch>
     </div>
   );

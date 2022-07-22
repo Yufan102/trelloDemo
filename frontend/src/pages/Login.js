@@ -1,4 +1,5 @@
 import LoginForm from "../components/LoginForm";
+import React, { useEffect, useState } from 'react';
 import { useHistory } from "react-router-dom";
 
 function LoginPage() {
@@ -23,9 +24,10 @@ function LoginPage() {
                 if (data.UUID.length === 0) {
                     alert("Invalid email or password.")
                 } else {
-                    history.replace('/workspace/' + data.UUID)
+                    history.replace('/workspace/' + data.UUID);
+                    sessionStorage.setItem('loggedIn', true);
                 }
-
+                
             }).catch(err => {
                 console.log('err', err);
             });
