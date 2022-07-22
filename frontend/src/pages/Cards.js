@@ -6,26 +6,53 @@ import ViewCards from '../components/ViewCards';
 
 function Cards() {
 
-    const [cardsData, setCardsData] = useState([]);
+    const [todoCardsData, setTodoCardsData] = useState([]);
+    const [doingCardsData, setDoingCardsData] = useState([]);
+    const [doneCardsData, setDoneCardsData] = useState([]);
 
     const url = process.env.REACT_APP_URL;
     window.localStorage.setItem('wsid', useParams().wsid);
     window.localStorage.setItem('bdid', useParams().bdid);
 
-    function getAllCards() {
+    function getTodoCards() {
         fetch(url + '/lists/get/todo/' + window.localStorage.getItem('wsid'),{
             headers: {
                 'Authorization': 'Bearer ' + window.localStorage.getItem('uuid')
             }
         }).then(response => response.json())
             .then(cards => {
-                setCardsData(cards);
+                setTodoCardsData(cards);
+            });
+
+    };
+
+    function getDoingCards() {
+        fetch(url + '/lists/get/doing/' + window.localStorage.getItem('wsid'),{
+            headers: {
+                'Authorization': 'Bearer ' + window.localStorage.getItem('uuid')
+            }
+        }).then(response => response.json())
+            .then(cards => {
+                setDoingCardsData(cards);
+            });
+    };
+
+    function getDoneCards() {
+        fetch(url + '/lists/get/done/' + window.localStorage.getItem('wsid'),{
+            headers: {
+                'Authorization': 'Bearer ' + window.localStorage.getItem('uuid')
+            }
+        }).then(response => response.json())
+            .then(cards => {
+                setDoneCardsData(cards);
             });
 
     };
 
     useEffect(function() {
-        getAllCards();
+        getTodoCards();
+        getDoingCards();
+        getDoneCards();
     }, []);
 
     return (
@@ -35,7 +62,9 @@ function Cards() {
         <Link to={'/boards/' + window.localStorage.getItem('bdid')}>Back to boards</Link>
 
             <section>
-                <ViewCards cards={cardsData}/>
+                    <ViewCards todoCards={todoCardsData}
+                               doingCards={doingCardsData}
+                               doneCards={doneCardsData}/>
             </section>
         </>
     );

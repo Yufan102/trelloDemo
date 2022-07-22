@@ -73,7 +73,7 @@ function ViewCards(props) {
     }
 
     function setStatus(id, status) {
-        setStatusData(status);
+        //setStatusData(status);
         fetch(url + '/ticket/addTo/' + status + '/' + window.localStorage.getItem('wsid') + '/' + id, {
             method: 'POST',
             headers: {
@@ -82,20 +82,16 @@ function ViewCards(props) {
         })
     }
     
-
     return (
 
         <section style={{ marginTop: '32px' }}>
 
-            <Container>
-
-                <Typography variant='h2' component='h2'>Cards</Typography>
-
-                <TextField type="text" placeholder="Search" onChange={e => (setSearchTerm(e.target.value))} />
-
-                <Grid container spacing={2}>
-
-                    {props.cards.filter((value) => {
+        <Typography variant='h2' component='h2'>Cards</Typography>
+        <TextField type="text" placeholder="Search" onChange={e => (setSearchTerm(e.target.value))} />
+            <Grid container>
+                <Grid item xs='4'>
+                <Typography variant='h3' component='h3'>Todo</Typography>
+                    {props.todoCards.filter((value) => {
                         if (searchTerm == "") {
                             return value;
                         } else if (value.name.toLowerCase().includes(searchTerm.toLowerCase())) {
@@ -105,7 +101,7 @@ function ViewCards(props) {
                         }
                     })
                         .map(card => (
-                            <Grid item xs='12' sm='12' md='4' lg='3' key={card.id}>
+                            <Grid item xs='4' sm='12' md='4' lg='3' key={card.id}>
                                 <Card elevation='6'>
                                     <CardContent>
                                         <Typography component='h4' variant='h4'>
@@ -123,14 +119,9 @@ function ViewCards(props) {
                                             {dueStatus(card.deadline)}
                                         </Typography>
                                         <Typography component='p' variant='p'>
-                                            {statusData}
+                                            Todo
                                         </Typography>
                                         <Typography>
-                                            {statusData != 'ToDo' && 
-                                                <Button id="todo" onClick={e => setStatus(card.id, e.target.id)}>
-                                                ToDo
-                                                </Button>
-                                            }
                                             {statusData != 'Doing' &&
                                                 <Button id="doing" onClick={e => setStatus(card.id, e.target.id)}>
                                                  Doing
@@ -152,8 +143,118 @@ function ViewCards(props) {
                             </Grid>
                         ))}
                 </Grid>
+
+                <Grid item xs='4'>
+                <Typography variant='h3' component='h3'>Doing</Typography>
+                    {props.doingCards.filter((value) => {
+                        if (searchTerm == "") {
+                            return value;
+                        } else if (value.name.toLowerCase().includes(searchTerm.toLowerCase())) {
+                            return value;
+                        } else if (dueStatus(value.deadline).toLowerCase().includes(searchTerm.toLowerCase())) {
+                            return value;
+                        }
+                    })
+                        .map(card => (
+                            <Grid item xs='10' sm='12' md='4' lg='3' key={card.id}>
+                                <Card elevation='6'>
+                                    <CardContent>
+                                        <Typography component='h4' variant='h4'>
+                                            {card.name}
+                                        </Typography>
+                                        <Typography component='p' variant='p'>
+                                            {card.assign_user_id != null &&
+                                                'Assignee: ' + card.assign_user_id.first_name + ' ' + card.assign_user_id.last_name
+                                            }
+                                        </Typography>
+                                        <Typography component='p' variant='p'>
+                                            {formatDate(card.deadline)}
+                                        </Typography>
+                                        <Typography>
+                                            {dueStatus(card.deadline)}
+                                        </Typography>
+                                        <Typography component='p' variant='p'>
+                                            Doing
+                                        </Typography>
+                                        <Typography>
+                                            {statusData != 'ToDo' && 
+                                                <Button id="todo" onClick={e => setStatus(card.id, e.target.id)}>
+                                                ToDo
+                                                </Button>
+                                            }
+                                            {statusData != 'Done' &&
+                                                <Button id="done" onClick={e => setStatus(card.id, e.target.id)}>
+                                                Done
+                                                </Button>
+                                            }
+                                            <Link to={'/addcardmember/'+ window.localStorage.getItem('bdid') + '/' + window.localStorage.getItem('wsid') + '/' + card.id}><Typography component='button' variant='button'>
+                                                Assign member by email
+                                            </Typography></Link>
+
+                                        </Typography>
+
+                                    </CardContent>
+                                </Card>
+                            </Grid>
+                        ))}
+                </Grid>
+
+                <Grid item xs='4'>
+                <Typography variant='h3' component='h3'>Done</Typography>
+                    {props.doneCards.filter((value) => {
+                        if (searchTerm == "") {
+                            return value;
+                        } else if (value.name.toLowerCase().includes(searchTerm.toLowerCase())) {
+                            return value;
+                        } else if (dueStatus(value.deadline).toLowerCase().includes(searchTerm.toLowerCase())) {
+                            return value;
+                        }
+                    })
+                        .map(card => (
+                            <Grid item xs='10' sm='12' md='4' lg='3' key={card.id}>
+                                <Card elevation='6'>
+                                    <CardContent>
+                                        <Typography component='h4' variant='h4'>
+                                            {card.name}
+                                        </Typography>
+                                        <Typography component='p' variant='p'>
+                                            {card.assign_user_id != null &&
+                                                'Assignee: ' + card.assign_user_id.first_name + ' ' + card.assign_user_id.last_name
+                                            }
+                                        </Typography>
+                                        <Typography component='p' variant='p'>
+                                            {formatDate(card.deadline)}
+                                        </Typography>
+                                        <Typography>
+                                            {dueStatus(card.deadline)}
+                                        </Typography>
+                                        <Typography component='p' variant='p'>
+                                            Done
+                                        </Typography>
+                                        <Typography>
+                                            {statusData != 'ToDo' && 
+                                                <Button id="todo" onClick={e => setStatus(card.id, e.target.id)}>
+                                                ToDo
+                                                </Button>
+                                            }
+                                            {statusData != 'Doing' &&
+                                                <Button id="doing" onClick={e => setStatus(card.id, e.target.id)}>
+                                                 Doing
+                                                </Button>
+                                            }
+                                            <Link to={'/addcardmember/'+ window.localStorage.getItem('bdid') + '/' + window.localStorage.getItem('wsid') + '/' + card.id}><Typography component='button' variant='button'>
+                                                Assign member by email
+                                            </Typography></Link>
+
+                                        </Typography>
+
+                                    </CardContent>
+                                </Card>
+                            </Grid>
+                        ))}
+                </Grid>
                 
-            </Container>
+            </Grid>
         </section>
     );
 };
