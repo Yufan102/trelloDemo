@@ -1,11 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useReducer } from 'react';
 import { ButtonGroup, TextField, Grid, Card, CardContent, Typography, Button, Container } from '@mui/material';
 import { Link, useParams } from 'react-router-dom';
+
+
 
 function ViewCards(props) {
 
     const [searchTerm, setSearchTerm] = useState('');
     const [statusData, setStatusData] = useState('');
+
     const url = process.env.REACT_APP_URL;
 
     function formatDate(value) {
@@ -73,19 +76,19 @@ function ViewCards(props) {
     }
 
     function setStatus(id, status) {
-        //setStatusData(status);
         fetch(url + '/ticket/addTo/' + status + '/' + window.localStorage.getItem('wsid') + '/' + id, {
             method: 'POST',
             headers: {
                 'Authorization': 'Bearer ' + window.localStorage.getItem('uuid')
             }
-        })
+        }).then(res => res.json()).then((responseJson) => {
+            window.location.reload(false);
+          })
     }
-    
+
     return (
 
         <section style={{ marginTop: '32px' }}>
-
         <Typography variant='h2' component='h2'>Cards</Typography>
         <TextField type="text" placeholder="Search" onChange={e => (setSearchTerm(e.target.value))} />
             <Grid container>
