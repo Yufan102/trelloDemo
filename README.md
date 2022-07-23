@@ -12,7 +12,6 @@
   - (B00881745) | [Rawan Morshed | rw788956@dal.ca](rw788956@dal.ca)
   - (B00822335) | [Nathan Atkin | nathangatkin@dal.ca](nathangatkin@dal.ca)
   - (B00755545) | [Anastasia Chapin-Fortin | an540616@dal.ca](an540616@dal.ca)
-  - (B00755545) | [Name | email@dal.ca](email@dal.ca)
 
 # Project
 
@@ -23,6 +22,7 @@
 # Links
 
 - [GitLab Project](https://git.cs.dal.ca/courses/2022-summer/csci-3130/projects/group07)
+- [Code Smells Excel sheet](https://git.cs.dal.ca/courses/2022-summer/csci-3130/projects/group07/-/blob/master/CodeSmells.xlsx)
 
 # Frontend
 
